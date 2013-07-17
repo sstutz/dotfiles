@@ -1,0 +1,17 @@
+# Force tmux to assume the terminal supports 256 colours
+alias tmux='tmux -2'
+
+# disable autocorrect for sudo
+alias sudo='nocorrect sudo'
+
+# disable autocorrect for aptitude
+alias aptitude='nocorrect aptitude'
+
+# a more readable ls output
+alias ll='ls -Alrth'
+
+# make sure to always create parent folder if it didn't exist
+alias mkdir='mkdir -p'
+
+# Include custom aliases
+[[ -f .aliases.local ]] && source ~/.aliases.local

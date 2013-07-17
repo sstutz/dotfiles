@@ -1,0 +1,25 @@
+set nocompatible
+filetype off
+
+set rtp+=~/.vim/bundle/vundle/
+call vundle#rc()
+
+" Let Vundle manage Vundle
+Bundle 'gmarik/vundle'
+
+" Visual
+Bundle 'Lokaltog/vim-powerline'
+Bundle 'nathanaelkane/vim-indent-guides'
+
+" Colors
+Bundle 'altercation/vim-colors-solarized'
+Bundle 'nanotech/jellybeans.vim'
+Bundle 'michalbachowski/vim-wombat256mod'
+
+" Misc
+Bundle 'scrooloose/nerdtree'
+Bundle 'mattn/zencoding-vim'
+Bundle 'kien/ctrlp.vim'
+Bundle 'mileszs/ack.vim'
+
+filetype on
