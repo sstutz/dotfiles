@@ -130,8 +130,12 @@ set_zsh_default() {
 #
 install_zsh_theme() {
     if [[ -d "$HOME/.oh-my-zsh/themes/" ]]; then
-        ln -s "$dotdir/devbox.zsh-theme" "$dotdir/oh-my-zsh/themes/devbox.zsh-theme";
-        success "Installed new ZSH theme."
+        if [[ ! -f "$HOME/.oh-my-zsh/themes/devbox.zsh-theme" ]]; then
+            ln -s "$dotdir/devbox.zsh-theme" "$dotdir/oh-my-zsh/themes/devbox.zsh-theme";
+            success "Installed new ZSH theme."
+        else
+            info "Devbox theme for ZSH already installed."
+        fi
     fi
 }
 
