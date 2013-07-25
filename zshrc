@@ -17,17 +17,11 @@ setopt NUMERIC_GLOB_SORT
 # Enable extended globbing
 setopt EXTENDED_GLOB
 
-# verbose output for cp and rm
-for c in cp rm rmdir; do
-    alias $c="$c -v"
-done
-
 if [ -x /usr/bin/dircolors ]; then
     test -r ~/.dircolors && eval "$(dircolors -b ~/.dircolors)" || eval "$(dircolors -b)"
 fi
 
-
-for file in ~/.{exports,aliases,zshrc.local}; do
+for file in ~/.{exports,aliases,functions,zshrc.local}; do
     [ -r "$file" ] && source "$file"
 done
 
