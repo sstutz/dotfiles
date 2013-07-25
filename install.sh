@@ -168,6 +168,25 @@ create_symlinks() {
 
 
 ##
+# Exclude the custom theme from zsh's submodule
+# Since we cant modify the submodules ignore file nor push a custom theme to
+# the repository, we will simply tell git to ignore that file completely!
+#
+exlcude_zsh_theme() {
+    local excludeFile="$dotdir/.git/modules/oh-my-zsh/info/exclude";
+    local themeFile="themes/devbox.zsh-theme"
+
+    if grep -Fxq "$themeFile" "$excludeFile"
+    then
+        info "Devbox theme already added to git's exclude file"
+    else
+        echo "$themeFile" >> "$excludeFile"
+        success "Added '$themeFile' to git exclude!"
+    fi
+}
+
+
+##
 # if a file is already available, we'll move it into a backup folder in $HOME.
 #
 install_dotfiles() {
@@ -302,6 +321,8 @@ main(){
     install_dotfiles;
 
     install_zsh_theme;
+
+    exlcude_zsh_theme;
 
     install_vundles;
 }
