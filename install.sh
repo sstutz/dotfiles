@@ -2,6 +2,8 @@
 # -*- Mode: sh; coding: utf-8; indent-tabs-mode: nil; tab-width: 4 -*-
 shopt -s nullglob
 
+# Exit immediately if a simple command exits with a non-zero status
+set -e
 
 ##
 # Variables
