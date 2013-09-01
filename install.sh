@@ -9,7 +9,7 @@ set -e
 # Variables
 #
 dotdir="$HOME/dotfiles";
-olddir="$HOME/dotfiles_old/";
+olddir="$dotdir/dotfiles_old/";
 cmds=('zsh' 'git');
 protected=('README.md' 'install.sh' 'devbox.zsh-theme');
 nc="$(tput sgr0)"
