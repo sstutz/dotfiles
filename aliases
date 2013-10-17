@@ -16,5 +16,8 @@ alias mkdir='mkdir -p'
 # copy pastebinit links to clipboard rather than stdout
 alias pastebincp="pastebinit | xsel -ib"
 
+# reloading the configuration
+alias reload=". ~/.zshrc && echo 'ZSH config reloaded from ~/.zshrc'"
+
 # Include custom aliases
 [[ -f .aliases.local ]] && source ~/.aliases.local
