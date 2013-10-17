@@ -7,5 +7,13 @@ export HISTCONTROL=ignoreboth
 # Make some commands not show up in history
 export HISTIGNORE="ls:ls *:cd:cd -:pwd;exit:date:* --help"
 
+export PYTHONPATH=/usr/lib/python3.3/site-packages
+
 # extend path environment variable
 export PATH=$PATH:/home/$USER/.local/bin
+
+export GOPATH=/home/$USER/go
+
+if [[ -d "/opt/google-appengine-go" ]]; then
+    export PATH=$PATH:/opt/google-appengine-go
+fi
