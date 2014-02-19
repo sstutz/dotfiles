@@ -71,9 +71,12 @@
         let NERDTreeShowHidden=1
         let NERDTreeKeepTreeInNewTab=1
     " }
-" }
 
-set rtp+=$HOME/.local/lib/python2.7/site-packages/powerline/bindings/vim/
+    " VimAirline {
+        let g:airline_powerline_fonts = 1
+        let g:airline_theme = "tomorrow"
+    "}
+" }
 
 " Always show statusline
 set laststatus=2
