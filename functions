@@ -60,3 +60,8 @@ function extract() {
 man () {
     /usr/bin/man $@ || (help $@ 2> /dev/null && help $@ | less)
 }
+
+# Search for a given string in php files.
+phind () {
+    ack --php "$@";
+}
