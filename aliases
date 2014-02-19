@@ -13,6 +13,9 @@ alias ll='ls -Alrth'
 # make sure to always create parent folder if it didn't exist
 alias mkdir='mkdir -p'
 
+# root shell but with the current users environment
+alias rs='sudo -sE'
+
 # copy pastebinit links to clipboard rather than stdout
 alias pastebincp="pastebinit | xsel -ib"
 
