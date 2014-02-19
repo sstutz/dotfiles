@@ -8,8 +8,10 @@ call vundle#rc()
 Bundle 'gmarik/vundle'
 
 " Visual
-Bundle 'Lokaltog/vim-powerline'
+Bundle 'bling/vim-airline'
 Bundle 'nathanaelkane/vim-indent-guides'
+Bundle 'edkolev/tmuxline.vim'
+Bundle 'airblade/vim-gitgutter'
 
 " Colors
 Bundle 'altercation/vim-colors-solarized'
