@@ -1,0 +1,20 @@
+[include]
+    # store [user], [credentials], etc in a local file
+    path = ~/.gitconfig.local
+[color]
+	ui = auto
+[core]
+	editor = vim
+	autocrlf = input
+[alias]
+	lol = log --graph --decorate --pretty=oneline --abbrev-commit --all
+	lg = log --graph --pretty=format:'%Cred%h -%C(yellow)%d%Creset %s %Cgreen(%ci) %C(bold blue)<%an>'
+	st = status
+	co = checkout
+	br = branch
+	ci = commit
+	pushall = push --recurse-submodules=on-demand
+[diff]
+	tool = vimdiff
+[merge]
+	tool = vimdiff
