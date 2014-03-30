@@ -49,6 +49,7 @@ function extract() {
             *.tgz) tar xzf "$fullpath" ;;
             *.txz) tar Jxvf "$fullpath" ;;
             *.zip) unzip "$fullpath" ;;
+            *.rar) unrar x "$fullpath" ;;
             *) echo "'$1' cannot be extracted via extract()" && cd .. && ! $didfolderexist && rm -r "$foldername" ;;
         esac
     else
