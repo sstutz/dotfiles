@@ -12,6 +12,7 @@ Bundle 'bling/vim-airline'
 Bundle 'nathanaelkane/vim-indent-guides'
 Bundle 'edkolev/tmuxline.vim'
 Bundle 'airblade/vim-gitgutter'
+Bundle 'bling/vim-bufferline'
 
 " Colors
 Bundle 'altercation/vim-colors-solarized'
