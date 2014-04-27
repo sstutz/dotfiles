@@ -17,3 +17,7 @@ export GOPATH=/home/$USER/go
 if [[ -d "/opt/google-appengine-go" ]]; then
     export PATH=$PATH:/opt/google-appengine-go
 fi
+
+if [[ -f "/usr/bin/javac" ]]; then
+    export JAVA_HOME=$(readlink -f /usr/bin/javac | sed "s:bin/javac::")
+fi
