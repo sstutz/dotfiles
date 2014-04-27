@@ -17,6 +17,18 @@ setopt NUMERIC_GLOB_SORT
 # Enable extended globbing
 setopt EXTENDED_GLOB
 
+# History settings
+HISTSIZE=5000
+SAVEHIST="$HISTSIZE"
+
+setopt hist_ignore_space
+setopt hist_ignore_all_dups
+setopt hist_verify
+setopt append_history
+
+# don't kill background processes when closing the shell
+setopt nohup
+
 if [ -x /usr/bin/dircolors ]; then
     test -r ~/.dircolors && eval "$(dircolors -b ~/.dircolors)" || eval "$(dircolors -b)"
 fi
