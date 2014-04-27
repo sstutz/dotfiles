@@ -15,9 +15,12 @@
 " General {
     scriptencoding utf-8
     syntax on                   " syntax highlighting
-    filetype plugin indent on   " Automatically detect file types.
+    filetype plugin indent on   " Automatically detect file types
     set mouse=a                 " automatically enable mouse usage
     set virtualedit=onemore     " allow for cursor beyond last character
+    set noswapfile              " disable the creation of swp files
+    set nobackup                " disable the creation of backup files
+    set hidden                  " hides buffers instead of closing them
 " }
 
 " Formatting {
@@ -29,7 +32,6 @@
     set softtabstop=4           " let backspace delete indent
     set paste                   " avoid weird whitespace pasting
 " }
-
 
 " VimUI {
     colorscheme wombat256mod        " load a colorscheme
@@ -44,6 +46,7 @@
     set ignorecase                  " case insensitive search
     set smartcase                   " case sensitive when uc present
     set showmatch                   " show matching brackets/parenthesis
+    set showcmd
 
     if has('cmdline_info')
         set ruler                   " show the ruler
@@ -58,7 +61,7 @@
     " for command mode
     nmap <S-Tab> <<
     " for insert mode
-    imap <S-Tab> <Esc><<i
+    imap <S-Tab> <C-o><<
 " }
 
 
@@ -75,18 +78,45 @@
     " VimAirline {
         let g:airline_powerline_fonts = 1
         let g:airline_theme = "tomorrow"
+        let g:airline#extensions#bufferline#enabled = 1
     "}
 " }
 
 " Functions {
-    fun! <SID>StripTrailingWhitespaces()
+    " removes all trailing whitespaces on save
+    function! <SID>StripTrailingWhitespaces()
         let l = line(".")
         let c = col(".")
         %s/\s\+$//e
         call cursor(l, c)
     endfun
-
     autocmd BufWritePre <buffer> :call <SID>StripTrailingWhitespaces()
+
+    " autocomlpete on tab
+    function! InsertTabWrapper()
+        let col = col('.') - 1
+        if !col || getline('.')[col - 1] !~ '\k'
+            return "\<tab>"
+        else
+            return "\<c-p>"
+        endif
+    endfunction
+    inoremap <tab> <c-r>=InsertTabWrapper()<cr>
+    inoremap <s-tab> <c-n>
+
+    " quick rename of current file
+    function! RenameFile()
+        let old_name = expand('%')
+        let new_name = input('New file name: ', expand('%'), 'file')
+        if new_name != '' && new_name != old_name
+            exec ':saveas ' . new_name
+            exec ':silent !rm ' . old_name
+            redraw!
+        endif
+    endfunction
+    map <leader>n :call RenameFile()<cr>
+
+    :au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g`\"" | endif
 " }
 
 " Always show statusline
