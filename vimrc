@@ -21,6 +21,7 @@
     set noswapfile              " disable the creation of swp files
     set nobackup                " disable the creation of backup files
     set hidden                  " hides buffers instead of closing them
+    set cm=blowfish             " set the cryptmethod to use the blowfish cipher
 " }
 
 " Formatting {
@@ -47,6 +48,15 @@
     set smartcase                   " case sensitive when uc present
     set showmatch                   " show matching brackets/parenthesis
     set showcmd
+
+    " Make tabs, trailing whitespace, and non-breaking spaces visible
+    exec "set listchars=tab:\uBB\uBB,trail:\uB7,nbsp:~"
+    set list
+
+    " highlight the 81st and 101st columns
+    highlight ColorColumn ctermbg=red
+    call matchadd('ColorColumn', '\%81v', 100)
+    call matchadd('ColorColumn', '\%101v', 100)
 
     if has('cmdline_info')
         set ruler                   " show the ruler
@@ -80,6 +90,17 @@
         let g:airline_theme = "tomorrow"
         let g:airline#extensions#bufferline#enabled = 1
     "}
+
+    " Syntastic {
+        set statusline+=%#warningmsg#
+        set statusline+=%{SyntasticStatuslineFlag()}
+        set statusline+=%*
+
+        let g:syntastic_always_populate_loc_list = 1
+        let g:syntastic_auto_loc_list = 1
+        let g:syntastic_check_on_open = 1
+        let g:syntastic_check_on_wq = 0
+    " }
 " }
 
 " Functions {
@@ -117,6 +138,28 @@
     map <leader>n :call RenameFile()<cr>
 
     :au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g`\"" | endif
+
+    " briefly hide everything except the match...
+    function! HLNext (blinktime)
+        highlight BlackOnBlack ctermfg=black ctermbg=black
+        let [bufnum, lnum, col, off] = getpos('.')
+        let matchlen = strlen(matchstr(strpart(getline('.'),col-1),@/))
+        let hide_pat = '\%<'.lnum.'l.'
+                \ . '\|'
+                \ . '\%'.lnum.'l\%<'.col.'v.'
+                \ . '\|'
+                \ . '\%'.lnum.'l\%>'.(col+matchlen-1).'v.'
+                \ . '\|'
+                \ . '\%>'.lnum.'l.'
+        let ring = matchadd('BlackOnBlack', hide_pat, 101)
+        redraw
+        exec 'sleep ' . float2nr(a:blinktime * 1000) . 'm'
+        call matchdelete(ring)
+        redraw
+    endfunction
+    " This rewires n and N to do the highlighing...
+    nnoremap <silent> n   n:call HLNext(0.4)<cr>
+    nnoremap <silent> N   N:call HLNext(0.4)<cr>
 " }
 
 " Always show statusline

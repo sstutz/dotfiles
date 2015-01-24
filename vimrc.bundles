@@ -1,28 +1,31 @@
 set nocompatible
 filetype off
 
-set rtp+=~/.vim/bundle/vundle/
+set rtp+=~/.vim/bundle/vundle
 call vundle#rc()
 
 " Let Vundle manage Vundle
-Bundle 'gmarik/vundle'
+Plugin 'gmarik/vundle'
 
 " Visual
-Bundle 'bling/vim-airline'
-Bundle 'nathanaelkane/vim-indent-guides'
-Bundle 'edkolev/tmuxline.vim'
-Bundle 'airblade/vim-gitgutter'
-Bundle 'bling/vim-bufferline'
+Plugin 'bling/vim-airline'
+Plugin 'edkolev/tmuxline.vim'
+Plugin 'airblade/vim-gitgutter'
+Plugin 'bling/vim-bufferline'
 
 " Colors
-Bundle 'altercation/vim-colors-solarized'
-Bundle 'nanotech/jellybeans.vim'
-Bundle 'michalbachowski/vim-wombat256mod'
+Plugin 'altercation/vim-colors-solarized'
+Plugin 'nanotech/jellybeans.vim'
+Plugin 'michalbachowski/vim-wombat256mod'
+
+" Language Support
+Plugin 'fatih/vim-go'
 
 " Misc
-Bundle 'scrooloose/nerdtree'
-Bundle 'mattn/zencoding-vim'
-Bundle 'kien/ctrlp.vim'
-Bundle 'mileszs/ack.vim'
+Plugin 'scrooloose/nerdtree'
+Plugin 'mattn/emmet-vim'
+Plugin 'kien/ctrlp.vim'
+Plugin 'scrooloose/syntastic'
+Plugin 'tpope/vim-surround'
 
 filetype on
