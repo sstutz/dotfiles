@@ -19,5 +19,6 @@ if [[ -d "/opt/google-appengine-go" ]]; then
 fi
 
 if [[ -f "/usr/bin/javac" ]]; then
-    export JAVA_HOME=$(readlink -f /usr/bin/javac | sed "s:bin/javac::")
+#    export JAVA_HOME=$(readlink -f /usr/bin/javac | sed "s:bin/javac::")
+    export JAVA_HOME="/usr/lib/jvm/java-default-runtime"
 fi
