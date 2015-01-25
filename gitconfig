@@ -14,9 +14,17 @@
     br = branch
     ci = commit
     pushall = push --recurse-submodules=on-demand
+    d = difftool
+    vimdiff = "!GIT_PAGER=" GIT_EXTERNAL_DIFF="git_diff_wrapper git diff"
 [diff]
     tool = vimdiff
+[diffzool]
+    prompt = false
 [merge]
-    tool = vimdiff
+    tool = splice
+[mergetool "splice"]
+    cmd = "vim -f $BASE $LOCAL $REMOTE $MERGED -c 'SpliceInit'"
+    trustExitCode = true
 [push]
     default = matching
+
