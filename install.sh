@@ -9,9 +9,9 @@ set -e
 # Variables
 #
 dotdir="$HOME/dotfiles";
-olddir="$dotdir/dotfiles_old/";
+olddir="$dotdir/dotfiles_old";
 cmds=('zsh' 'git' 'xsel' 'pastebinit' 'toilet');
-protected=('README.md' 'install.sh' 'devbox.zsh-theme');
+protected=('README.md' 'install.sh' 'devbox.zsh-theme' 'git_diff_wrapper' 'dotfiles_old');
 nc="$(tput sgr0)"
 red="$(tput setaf 1)"
 green="$(tput setaf 2)"
@@ -84,7 +84,7 @@ create_backup_folder() {
 #
 init_git_submodules() {
     cd "$dotdir";
-    if git submodule init; then
+    if git submodule init > /dev/null 2>&1; then
         success "Initialized all submodules.";
     else
         die "Could not initialize git submodules"
@@ -184,6 +184,27 @@ exlcude_zsh_theme() {
     else
         echo "$themeFile" >> "$excludeFile"
         success "Added '$themeFile' to git exclude!"
+    fi
+}
+
+
+add_git_diff_wrapper() {
+    local localBinDir="/home/$USER/.local/bin";
+
+    if [[ ! -d "$localBinDir" ]]; then
+        mkdir -p "$localBinDir";
+        info "Created $localBinDir"
+    fi
+
+    if [[ -e "$localBinDir/git_diff_wrapper" ]]; then
+        info "git_diff_wrapper already installed"
+    else
+        if create_symlinks "$dotdir/git_diff_wrapper" "$localBinDir/git_diff_wrapper"
+        then
+            success "Installed git_diff_wrapper"
+        else
+            warn "Couldn't create sybolic link to \"$localBinDir/git_diff_wrapper\"."
+        fi
     fi
 }
 
@@ -319,6 +340,8 @@ main(){
     create_backup_folder;
 
     set_zsh_default;
+
+    add_git_diff_wrapper;
 
     install_dotfiles;
 
