@@ -1,6 +1,6 @@
 [include]
     # store [user], [credentials], etc in a local file
-    path = ~/.gitconfig.local
+    path = .gitconfig.local
 [color]
     ui = auto
 [core]
