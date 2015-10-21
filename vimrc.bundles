@@ -11,7 +11,6 @@ Plugin 'gmarik/vundle'
 Plugin 'bling/vim-airline'
 Plugin 'edkolev/tmuxline.vim'
 Plugin 'airblade/vim-gitgutter'
-Plugin 'bling/vim-bufferline'
 
 " Colors
 Plugin 'altercation/vim-colors-solarized'
@@ -28,5 +27,6 @@ Plugin 'kien/ctrlp.vim'
 Plugin 'scrooloose/syntastic'
 Plugin 'tpope/vim-surround'
 Plugin 'sjl/splice.vim'
+Plugin 'FelikZ/ctrlp-py-matcher'
 
 filetype on
