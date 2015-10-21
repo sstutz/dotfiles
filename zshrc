@@ -17,6 +17,9 @@ setopt NUMERIC_GLOB_SORT
 # Enable extended globbing
 setopt EXTENDED_GLOB
 
+# but when pattern matching fails, simply use the command as is
+setopt no_nomatch
+
 # History settings
 HISTSIZE=5000
 SAVEHIST="$HISTSIZE"
