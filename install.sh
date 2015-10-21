@@ -10,7 +10,7 @@ set -e
 #
 dotdir="$HOME/dotfiles";
 olddir="$dotdir/dotfiles_old";
-cmds=('zsh' 'git' 'xsel' 'pastebinit' 'toilet');
+cmds=('zsh' 'git' 'xsel' 'pastebinit' 'toilet' 'ctags' 'ag');
 protected=('README.md' 'install.sh' 'devbox.zsh-theme' 'git_diff_wrapper' 'dotfiles_old');
 nc="$(tput sgr0)"
 red="$(tput setaf 1)"
