@@ -31,7 +31,7 @@
     set shiftwidth=4            " use indents of 4 spaces
     set tabstop=4               " an indentation every four columns
     set softtabstop=4           " let backspace delete indent
-    set paste                   " avoid weird whitespace pasting
+"    set paste                   " avoid weird whitespace pasting
 " }
 
 " VimUI {
@@ -88,7 +88,8 @@
     " VimAirline {
         let g:airline_powerline_fonts = 1
         let g:airline_theme = "tomorrow"
-        let g:airline#extensions#bufferline#enabled = 1
+        let g:airline#extensions#tabline#enabled = 1
+        let g:airline#extensions#tabline#buffer_nr_show = 1
     "}
 
     " Syntastic {
@@ -100,6 +101,20 @@
         let g:syntastic_auto_loc_list = 1
         let g:syntastic_check_on_open = 1
         let g:syntastic_check_on_wq = 0
+    " }
+
+    " CtrlP {
+        " The Silver Searcher - AG to build the index in no time!
+        let g:ctrlp_user_command = 'ag %s -i --nocolor --nogroup --hidden
+              \ --ignore .git
+              \ --ignore .svn
+              \ --ignore .hg
+              \ --ignore .DS_Store
+              \ --ignore "**/*.pyc"
+              \ -g ""'
+
+        " faster matcher
+        let g:ctrlp_match_func = { 'match': 'pymatcher#PyMatch' }
     " }
 " }
 
