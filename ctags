@@ -1,0 +1,5 @@
+# basic stuff
+--exclude=.git
+--exclude=.svn
+--exclude=node_modules
+--exclude=*phpmyadmin*
