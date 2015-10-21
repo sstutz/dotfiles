@@ -8,7 +8,7 @@ alias sudo='nocorrect sudo'
 alias aptitude='nocorrect aptitude'
 
 # a more readable ls output
-alias ll='ls -Alrth'
+alias ll='ls -AlrthF'
 
 # make sure to always create parent folder if it didn't exist
 alias mkdir='mkdir -p'
