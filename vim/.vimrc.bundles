@@ -1,0 +1,32 @@
+set nocompatible
+filetype off
+
+set rtp+=~/.vim/bundle/Vundle.vim
+call vundle#rc()
+
+" Let Vundle manage Vundle
+Plugin 'VundleVim/Vundle.vim'
+
+" Visual
+Plugin 'bling/vim-airline'
+Plugin 'edkolev/tmuxline.vim'
+Plugin 'airblade/vim-gitgutter'
+
+" Colors
+Plugin 'altercation/vim-colors-solarized'
+Plugin 'nanotech/jellybeans.vim'
+Plugin 'michalbachowski/vim-wombat256mod'
+
+" Language Support
+Plugin 'fatih/vim-go'
+
+" Misc
+Plugin 'scrooloose/nerdtree'
+Plugin 'mattn/emmet-vim'
+Plugin 'kien/ctrlp.vim'
+Plugin 'scrooloose/syntastic'
+Plugin 'tpope/vim-surround'
+Plugin 'sjl/splice.vim'
+Plugin 'FelikZ/ctrlp-py-matcher'
+
+filetype on

@@ -1,0 +1,17 @@
+# Force tmux to assume the terminal supports 256 colours
+alias tmux='tmux -2'
+
+# a more readable ls output
+alias ll='ls -AlrthF'
+
+# root shell but with the current users environment
+alias rs='sudo -sE'
+
+# copy pastebinit links to clipboard rather than stdout
+alias pastebincp="pastebinit | xsel -ib"
+
+# reloading the configuration
+alias reload=". ~/.zshrc && echo 'ZSH config reloaded from ~/.zshrc'"
+
+# Include custom aliases
+[[ -f .aliases.local ]] && source ~/.aliases.local
