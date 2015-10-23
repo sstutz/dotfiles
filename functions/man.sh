@@ -1,0 +1,5 @@
+#!/usr/bin/env sh
+# just a nicer man output
+man () {
+    /usr/bin/man $@ || (help $@ 2> /dev/null && help $@ | less)
+}

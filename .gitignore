@@ -1,4 +1,4 @@
 vim/.netrwhist
 *.swp
-vim/bundle/*
+vim/.vim/bundle/*
 dotfiles_old/
