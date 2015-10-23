@@ -1,0 +1,12 @@
+if [[ -d "$HOME/go" ]]; then
+    export GOPATH=$HOME/go
+    export GOBIN=$GOPATH/bin
+    export PATH=$PATH:$GOBIN
+fi
+
+if [[ -d "/opt/google-appengine-go" ]]; then
+    export PATH=$PATH:/opt/google-appengine-go
+fi
+
+# make sure godoc is always running
+(godoc -http=:6060 -analysis=pointer 2>/dev/null &)

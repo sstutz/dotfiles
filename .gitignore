@@ -1,0 +1,4 @@
+vim/.netrwhist
+*.swp
+vim/.vim/bundle/*
+dotfiles_old/
