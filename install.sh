@@ -2,6 +2,7 @@
 # -*- Mode: sh; coding: utf-8; indent-tabs-mode: nil; tab-width: 4 -*-
 shopt -s nullglob
 
+<<<<<<< HEAD
 # Exit immediately if a simple command exits with a non-zero status
 set -e
 
@@ -66,6 +67,25 @@ die() {
   warn "$1"
   exit "$st"
 }
+=======
+
+# Exit immediately if a simple command exits with a non-zero status
+set -e
+
+
+# Include helpers
+source "$(dirname $0)/functions/helpers.sh";
+source "$(dirname $0)/stow.sh";
+
+
+##
+# Variables
+#
+dotdir="$HOME/dotfiles";
+olddir="$dotdir/dotfiles_old";
+cmds=('zsh' 'git' 'xsel' 'pastebinit' 'toilet' 'ctags' 'ag' 'stow');
+protected=('functions' 'dotfiles_old');
+>>>>>>> dotfiles/master
 
 
 ##
@@ -97,7 +117,10 @@ init_git_submodules() {
 #
 update_git_submodules() {
     cd "$dotdir";
+<<<<<<< HEAD
 
+=======
+>>>>>>> dotfiles/master
     if git submodule update; then
         success "Updated all submodules."
     else
@@ -107,6 +130,7 @@ update_git_submodules() {
 
 
 ##
+<<<<<<< HEAD
 # Pulls origin master for every git submodule
 #
 upgrade_git_submodules() {
@@ -116,6 +140,8 @@ upgrade_git_submodules() {
 
 
 ##
+=======
+>>>>>>> dotfiles/master
 # Make sure zsh is the default shell
 #
 set_zsh_default() {
@@ -123,6 +149,11 @@ set_zsh_default() {
         info "Password is required to change the defaut shell."
         chsh -s $(which zsh)
         success "Changed the default shell to ZSH"
+<<<<<<< HEAD
+=======
+    else
+        info "ZSH is already the default."
+>>>>>>> dotfiles/master
     fi
 }
 
@@ -133,7 +164,11 @@ set_zsh_default() {
 install_zsh_theme() {
     if [[ -d "$HOME/.oh-my-zsh/themes/" ]]; then
         if [[ ! -f "$HOME/.oh-my-zsh/themes/devbox.zsh-theme" ]]; then
+<<<<<<< HEAD
             ln -s "$dotdir/devbox.zsh-theme" "$dotdir/oh-my-zsh/themes/devbox.zsh-theme";
+=======
+            ln -s "$dotdir/zsh/devbox.zsh-theme" "$dotdir/zsh/.oh-my-zsh/themes/devbox.zsh-theme";
+>>>>>>> dotfiles/master
             success "Installed new ZSH theme."
         else
             info "Devbox theme for ZSH already installed."
@@ -161,6 +196,7 @@ install_vundles() {
 
 
 ##
+<<<<<<< HEAD
 # Create all the symbolic links.
 #
 create_symlinks() {
@@ -180,6 +216,17 @@ exclude_zsh_theme() {
 
     if grep -Fxq "$themeFile" "$excludeFile"
     then
+=======
+# Exclude the custom theme from zsh's submodule
+# Since we cannot modify submodules, ignore file nor push a custom theme to
+# the repository, we will simply tell git to ignore that file completely!
+#
+exclude_zsh_theme() {
+    local excludeFile="$dotdir/.git/modules/zsh/.oh-my-zsh/info/exclude";
+    local themeFile="themes/devbox.zsh-theme"
+
+    if grep -Fxq "$themeFile" "$excludeFile"; then
+>>>>>>> dotfiles/master
         info "Devbox theme already added to git's exclude file"
     else
         echo "$themeFile" >> "$excludeFile"
@@ -188,6 +235,7 @@ exclude_zsh_theme() {
 }
 
 
+<<<<<<< HEAD
 add_git_diff_wrapper() {
     local localBinDir="/home/$USER/.local/bin";
 
@@ -206,6 +254,31 @@ add_git_diff_wrapper() {
             warn "Couldn't create sybolic link to \"$localBinDir/git_diff_wrapper\"."
         fi
     fi
+=======
+##
+# Make sure all required software is available, otherwise abort.
+#
+install_dependencies(){
+    for cmd in "${cmds[@]}"; do
+        command -v $cmd >/dev/null 2>&1 || {
+            warn "$cmd is not installed but required. Aborting :(";
+
+            if [[ -e "/etc/debian_version" ]]; then
+                info "but you might want to try 'sudo apt-get install $cmd'";
+            fi
+
+            if [[ -e "/etc/redhat-release" ]]; then
+                info "but you might want to try 'sudo yum install $cmd'";
+            fi
+
+            if [[ -e "/etc/arch-release" ]]; then
+                info "but you might want to try 'sudo pacman -S $cmd'";
+            fi
+
+            exit 1;
+        }
+    done;
+>>>>>>> dotfiles/master
 }
 
 
@@ -226,6 +299,7 @@ install_dotfiles() {
     declare -A tmp;
 
     # fill the array with all protected files
+<<<<<<< HEAD
     for file in "${protected[@]}"; do
         tmp["$dotdir/$file"]=1;
     done;
@@ -301,10 +375,87 @@ install_dotfiles() {
             else
                 create_symlinks "$file" "$target"
             fi;
+=======
+    for p in "${protected[@]}"; do
+        tmp["$dotdir/$p"]=1;
+    done;
+
+    for path in "$dotdir"/*; do
+        pkg=$(basename $path)
+        if ((tmp[$path])) || [[ ! -d "$path" ]]; then
+            continue
+        fi
+
+
+        if [[ ! -e `package_target "$pkg"` ]]; then
+            indexed_stow "$pkg"
+            continue
+        fi;
+
+        backup=false
+
+        overwrite=false
+
+        skip=false
+
+        if [[ $overwrite_all = false && $backup_all = false && $skip_all = false ]]; then
+
+            user "File '$target' already exists, what do you want to do?"
+            user "[B]ackup all, [o]verwrite, [O]verwrite all, [b]ackup, [s]kip, [S]kip all?"
+
+            strike=0;
+
+            action=null;
+
+            until [[ "$action" =~ [BoObsS] ]]; do
+
+                if [[ "$strike" == 3 ]]; then
+                    die "Ok .. no more bash for you!";
+                fi
+
+                printf " [${yellow} ?? ${nc}] ";
+                read -n 1 action;
+                echo ''
+
+                case "$action" in
+                    "B" ) backup_all=true;;
+                    "o" ) overwrite=true;;
+                    "O" ) overwrite_all=true;;
+                    "b" ) backup=true;;
+                    "s" ) skip=true;;
+                    "S" ) skip_all=true;;
+                    * )
+                        warn "Please enter a valid option.";
+                        ((strike++));
+                    ;;
+                esac;
+
+            done;
+        fi;
+
+
+        if [[ "$overwrite" == true || "$overwrite_all" == true ]]; then
+            rm -rf $target
+            info "removed $target"
+        fi
+
+
+        if [[ "$backup" == true || "$backup_all" == true ]]; then
+            mv "$target" "$olddir/${file##*/}"
+            info "Created a backup for '${file##*/}' in '$olddir/${file##*/}'"
+        fi
+
+
+        if [[ "$skip" == false && "$skip_all" == false ]]; then
+            indexed_stow "$file"
+        else
+            info "'$target' was skipped."
+>>>>>>> dotfiles/master
         fi;
     done
 }
 
+<<<<<<< HEAD
 
 main(){
 
@@ -330,19 +481,29 @@ main(){
             exit 1;
         }
     done;
+=======
+main(){
+    install_dependencies;
+>>>>>>> dotfiles/master
 
     init_git_submodules;
 
     update_git_submodules;
 
+<<<<<<< HEAD
 #    upgrade_git_submodules;
 
+=======
+>>>>>>> dotfiles/master
     create_backup_folder;
 
     set_zsh_default;
 
+<<<<<<< HEAD
     add_git_diff_wrapper;
 
+=======
+>>>>>>> dotfiles/master
     install_dotfiles;
 
     install_zsh_theme;
