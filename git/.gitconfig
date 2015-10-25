@@ -1,6 +1,7 @@
 [include]
     # store [user], [credentials], etc in a local file
     path = .gitconfig.local
+
 [color]
     ui = auto
     diff = auto
@@ -19,6 +20,7 @@
 [core]
     editor = vim
     autocrlf = input
+    excludesfile = ~/.gitignore_global
 
 [alias]
     lol = log --graph --decorate --pretty=oneline --abbrev-commit --all
@@ -30,6 +32,10 @@
     pushall = push --recurse-submodules=on-demand
     d = difftool
     vimdiff = "!GIT_PAGER=" GIT_EXTERNAL_DIFF="git_diff_wrapper git diff"
+    root = rev-parse --show-toplevel
+    info = ! "gitinfo(){ if git rev-parse ${1} >/dev/null 2>&1; then git cat-file -p $(git rev-parse ${1}); else echo Invalid object; fi }; gitinfo"
+    credit = shortlog -sn
+    exec = ! "exec"
 
 [diff]
     tool = vimdiff
