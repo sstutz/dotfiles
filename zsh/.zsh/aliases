@@ -13,5 +13,10 @@ alias pastebincp="pastebinit | xsel -ib"
 # reloading the configuration
 alias reload=". ~/.zshrc && echo 'ZSH config reloaded from ~/.zshrc'"
 
+# using rsync to cp files for proper output
+if which rsync >/dev/null; then
+    alias cp="rsync --progress -avzh"
+fi
+
 # Include custom aliases
 [[ -f .aliases.local ]] && source ~/.aliases.local
