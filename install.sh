@@ -8,7 +8,7 @@ set -e
 
 
 # Include helpers
-source "$(dirname $0)/functions/helpers.sh";
+source "$(dirname $0)/functions/00_helpers.sh";
 source "$(dirname $0)/stow.sh";
 
 
