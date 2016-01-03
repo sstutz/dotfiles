@@ -15,7 +15,7 @@ export EDITOR="vim"
 export VISUAL="vim"
 
 # Locale exports
-locale="de_DE.UTF-8"
+locale="en_US.UTF-8"
 export LC_COLLATE=$locale
 export LC_CTYPE=$locale
 export LC_MESSAGES=$locale
@@ -29,6 +29,9 @@ export LESSCHARSET=utf-8
 
 # extend path environment variable
 export PATH=$PATH:/home/$USER/.local/bin
+
+# set path to dofiles folder
+export DOTFILES="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 
 if [ -x /usr/bin/dircolors ]; then
     test -r ~/.dircolors && eval "$(dircolors -b ~/.dircolors)" || eval "$(dircolors -b)"
