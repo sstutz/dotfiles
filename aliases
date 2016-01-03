@@ -1,8 +1,17 @@
 # Force tmux to assume the terminal supports 256 colours
 alias tmux='tmux -2'
 
+# disable autocorrect for sudo
+alias sudo='nocorrect sudo'
+
+# disable autocorrect for aptitude
+alias aptitude='nocorrect aptitude'
+
 # a more readable ls output
 alias ll='ls -AlrthF'
+
+# make sure to always create parent folder if it didn't exist
+alias mkdir='mkdir -p'
 
 # root shell but with the current users environment
 alias rs='sudo -sE'
@@ -12,11 +21,6 @@ alias pastebincp="pastebinit | xsel -ib"
 
 # reloading the configuration
 alias reload=". ~/.zshrc && echo 'ZSH config reloaded from ~/.zshrc'"
-
-# using rsync to cp files for proper output
-if which rsync >/dev/null; then
-    alias cp="rsync --progress -avzh"
-fi
 
 # Include custom aliases
 [[ -f .aliases.local ]] && source ~/.aliases.local
