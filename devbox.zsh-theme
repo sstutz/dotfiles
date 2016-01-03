@@ -1,20 +1,19 @@
-#!/bin/bash
 ZSH_THEME_GIT_PROMPT_DIRTY="$fg[red]+"
 ZSH_THEME_GIT_PROMPT_CLEAN="$fg[green]✔"
 ZSH_THEME_GIT_PROMPT_PREFIX="[git:"
 ZSH_THEME_GIT_PROMPT_SUFFIX="]$reset_color"
 
 
-git_prompt_info() {
+function git_prompt_info() {
   ref=$(git symbolic-ref HEAD 2> /dev/null) || return
   echo "$(parse_git_dirty)$ZSH_THEME_GIT_PROMPT_PREFIX$(current_branch)$ZSH_THEME_GIT_PROMPT_SUFFIX"
 }
 
-get_pwd() {
+function get_pwd() {
   print -D $PWD
 }
 
-put_spacing() {
+function put_spacing() {
   local git=$(git_prompt_info)
   if [ ${#git} != 0 ]; then
     ((git=${#git} - 10))
@@ -27,16 +26,16 @@ put_spacing() {
 
   local spacing=""
   for i in {1..$termwidth}; do
-    spacing="${spacing} "
+    spacing="${spacing} " 
   done
   echo $spacing
 }
 
-getIcon(){
+function getIcon(){
 	dir=${PWD##*/}
 	gitBranch=$(git branch 2>/dev/null | grep -e '\* ' | sed 's/^..\(.*\)/{\1}/')
 	icon="→"
-
+	
 	if [ -f .dropbox ]; then
 	    icon="☁"
 	elif [ "$dir" = "Music" ]; then
@@ -48,7 +47,7 @@ getIcon(){
 	echo $icon;
 }
 
-precmd() {
-    print -rP '%(!.%{$fg_bold[red]%}.%{$fg_bold[green]%}%n@)%m $fg[yellow]in $(get_pwd)$(put_spacing)$(git_prompt_info)'
+function precmd() {
+print -rP '%(!.%{$fg_bold[red]%}.%{$fg_bold[green]%}%n@)%m $fg[yellow]in $(get_pwd)$(put_spacing)$(git_prompt_info)'
 }
 PROMPT='%{$reset_color%}$(getIcon) '
