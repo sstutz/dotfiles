@@ -1,0 +1,9 @@
+# add folder completion for ".."
+zstyle ':completion:*' special-dirs true
+# enable cache
+zstyle ':completion:*' use-cache on
+zstyle ':completion:*' cache-path ~/.zsh/cache
+
+# ignore functions not available on the system
+zstyle ':completion:*:functions' ignored-patterns '_*'
+
