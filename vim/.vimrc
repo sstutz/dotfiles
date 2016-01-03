@@ -1,12 +1,14 @@
+" must be first line, allow vim to break compatibility with vi
+set nocompatible
+
 " Environment {
-    " Setup Bundle Support {
-        if filereadable(expand("~/.vimrc.bundles"))
-          source ~/.vimrc.bundles
+    " Setup vim-Plug Support {
+        if filereadable(expand("~/.vim/plug.vim"))
+          source ~/.vim/plug.vim
         endif
     " }
 
     " Basics {
-        set nocompatible        " must be first line
         set background=dark     " Assume a dark background
         set t_Co=256            " set vim color to 256
     " }
@@ -16,6 +18,8 @@
     scriptencoding utf-8
     syntax on                   " syntax highlighting
     filetype plugin indent on   " Automatically detect file types
+    set encoding=utf-8          " The encoding displayed.
+    set fileencoding=utf-8      " The encoding written to file.
     set mouse=a                 " automatically enable mouse usage
     set virtualedit=onemore     " allow for cursor beyond last character
     set noswapfile              " disable the creation of swp files
@@ -32,6 +36,11 @@
     set tabstop=4               " an indentation every four columns
     set softtabstop=4           " let backspace delete indent
 "    set paste                   " avoid weird whitespace pasting
+" }
+
+" Splits {
+    set splitbelow              " Open new splits below
+    set splitright              " Open new vertical splits to the right
 " }
 
 " VimUI {
@@ -83,6 +92,7 @@
         let NERDTreeQuitOnOpen=1
         let NERDTreeShowHidden=1
         let NERDTreeKeepTreeInNewTab=1
+        map <C-n> :NERDTreeToggle<CR>
     " }
 
     " VimAirline {
@@ -120,62 +130,17 @@
 
 " Functions {
     " removes all trailing whitespaces on save
-    function! <SID>StripTrailingWhitespaces()
-        let l = line(".")
-        let c = col(".")
-        %s/\s\+$//e
-        call cursor(l, c)
-    endfun
-    autocmd BufWritePre <buffer> :call <SID>StripTrailingWhitespaces()
-
-    " autocomlpete on tab
-    function! InsertTabWrapper()
-        let col = col('.') - 1
-        if !col || getline('.')[col - 1] !~ '\k'
-            return "\<tab>"
-        else
-            return "\<c-p>"
-        endif
-    endfunction
-    inoremap <tab> <c-r>=InsertTabWrapper()<cr>
-    inoremap <s-tab> <c-n>
+    source $HOME/.vim/functions/stripTrailingWhitespaces.vim
 
     " quick rename of current file
-    function! RenameFile()
-        let old_name = expand('%')
-        let new_name = input('New file name: ', expand('%'), 'file')
-        if new_name != '' && new_name != old_name
-            exec ':saveas ' . new_name
-            exec ':silent !rm ' . old_name
-            redraw!
-        endif
-    endfunction
-    map <leader>n :call RenameFile()<cr>
-
-    :au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g`\"" | endif
+    source $HOME/.vim/functions/renameFile.vim
 
     " briefly hide everything except the match...
-    function! HLNext (blinktime)
-        highlight BlackOnBlack ctermfg=black ctermbg=black
-        let [bufnum, lnum, col, off] = getpos('.')
-        let matchlen = strlen(matchstr(strpart(getline('.'),col-1),@/))
-        let hide_pat = '\%<'.lnum.'l.'
-                \ . '\|'
-                \ . '\%'.lnum.'l\%<'.col.'v.'
-                \ . '\|'
-                \ . '\%'.lnum.'l\%>'.(col+matchlen-1).'v.'
-                \ . '\|'
-                \ . '\%>'.lnum.'l.'
-        let ring = matchadd('BlackOnBlack', hide_pat, 101)
-        redraw
-        exec 'sleep ' . float2nr(a:blinktime * 1000) . 'm'
-        call matchdelete(ring)
-        redraw
-    endfunction
-    " This rewires n and N to do the highlighing...
-    nnoremap <silent> n   n:call HLNext(0.4)<cr>
-    nnoremap <silent> N   N:call HLNext(0.4)<cr>
+    source $HOME/.vim/functions/hideOnSearch.vim
 " }
+
+" Jump to the last position when reopening a file
+:au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif
 
 " Always show statusline
 set laststatus=2

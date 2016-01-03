@@ -91,13 +91,13 @@ install_zsh_theme() {
 # Install Vundle modules
 #
 install_vundles() {
-    user "Do you want to install all Vundle bundles? (y or n)"
+    user "Do you want to install all vim plugins? (y or n)"
     printf " [${yellow} ?? ${nc}] ";
     read -n 1 action;
     echo ''
     if [[ "$action" == "y" ]]; then
-        if vim -u ~/.vimrc.bundles +BundleInstall +qa; then
-            success "all bundles are installed!";
+        if sh ~/.vim/install.sh; then
+            success "all plugins are installed!";
         else
             warn "Could not install Vundle bundles."
         fi;
