@@ -8,5 +8,8 @@ if [[ -d "/opt/google-appengine-go" ]]; then
     export PATH=$PATH:/opt/google-appengine-go
 fi
 
+# Enable 1.5 experimental vendoring
+export GO15VENDOREXPERIMENT=1
+
 # make sure godoc is always running
-(godoc -http=:6060 -analysis=pointer 2>/dev/null &)
+(godoc -http=:6060 2>/dev/null &)
