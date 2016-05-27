@@ -1,7 +1,8 @@
 vim/.netrwhist
+vim/viminfo
 *.swp
 vim/.vim/bundle/*
 dotfiles_old/
 zsh/zgen/
-vim/.vim/autoload/
-vim/.vim/plugged/
+vim/autoload/
+vim/plugged/
