@@ -9,10 +9,8 @@ for function in ~/dotfiles/functions/*; do
 done;
 
 for config in ~/.zsh/*; do
-    if [[ -e "$config" ]]; then
+    if [[ -e "$config" ]] && [[ "$config" != "$HOME/.zsh/zhistory" ]]; then
         . $config
-    else
-        echo "$config not found"
     fi
 done;
 

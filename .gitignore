@@ -6,3 +6,4 @@ dotfiles_old/
 zsh/zgen/
 vim/autoload/
 vim/plugged/
+zsh/.zsh/zhistory
