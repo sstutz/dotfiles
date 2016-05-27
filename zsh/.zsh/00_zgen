@@ -22,7 +22,7 @@ if ! zgen saved; then
 
     zgen load unixorn/git-extra-commands
 
-    zgen load rimraf/k
+    zgen load supercrabtree/k
 
     zgen load zsh-users/zsh-completions src
 
