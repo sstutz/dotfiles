@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 echo "Updating/cleaning Vim plugins:"
 
 # Thanks for greywh in #vim for this tip

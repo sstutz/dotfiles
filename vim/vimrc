@@ -1,0 +1,20 @@
+" must be first line, allow vim to break compatibility with vi
+set nocompatible
+
+
+" Set configuration folder
+let g:configpath=$HOME.'/.vim'
+
+
+" Tell vim to remember certain things when we exit
+"  '100 :  marks will be remembered for up to 100 previously edited files
+"  "100 :  will save up to 100 lines for each register
+"  :50  :  up to 50 lines of command-line history will be remembered
+"  %    :  saves and restores the buffer list
+"  n... :  where to save the viminfo files
+set viminfo='100,\"100,:50,%,n~/.vim/viminfo
+
+
+execute 'source' g:configpath . '/mappings.vim'
+execute 'source' g:configpath . '/common.vim'
+

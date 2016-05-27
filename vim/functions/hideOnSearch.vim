@@ -1,4 +1,4 @@
-function! HLNext (blinktime)
+function! HLNext(blinktime)
     highlight BlackOnBlack ctermfg=black ctermbg=black
     let [bufnum, lnum, col, off] = getpos('.')
     let matchlen = strlen(matchstr(strpart(getline('.'),col-1),@/))
