@@ -1,7 +1,9 @@
 bin: ~/.local/bin
 ctags: ~
 git: ~
-i3: ~
+i3: ~/.config/i3
+dunst: ~/.config/dunst
+i3blocks: ~/.config/i3blocks
 tmux: ~
-vim: ~
+vim: ~/.vim
 zsh: ~
