@@ -1,0 +1,5 @@
+#!/usr/bin/env
+WALLPAPER="Material Wallpaper 134.1.png"
+feh --bg-scale "/home/steven/Downloads/$WALLPAPER"
+
+#feh  --bg-fill
