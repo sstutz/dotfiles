@@ -3,7 +3,7 @@ vim/viminfo
 *.swp
 vim/.vim/bundle/*
 dotfiles_old/
-zsh/zgen/
+zsh/zplug/
 vim/autoload/
 vim/plugged/
 zsh/.zsh/zhistory

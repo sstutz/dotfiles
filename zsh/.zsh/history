@@ -1,4 +1,4 @@
-HISTFILE=~/.zhistory
+HISTFILE="$HOME/.zsh/zhistory"
 
 HISTSIZE=5000
 SAVEHIST="$HISTSIZE"
