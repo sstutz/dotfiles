@@ -19,6 +19,9 @@
     set nrformats="alpha,bin,hex"   " Let ^A^X in/decrease binary, hex or single letters
     set wildmenu                    " Enhance command-line completion
     set wildmode=list:longest,full
+    set autoread                    " autoread file if changed outside of vim
+    set ttimeout
+    set ttimeoutlen=50
 " }
 
 
@@ -60,7 +63,7 @@
 
 
 " UI: {
-    colorscheme wombat256mod        " load a colorscheme
+    colorscheme gruvbox             " load a colorscheme
     set title                       " Display filename in the terminal title
     set showmatch                   " show matching brackets/parenthesis
     set showmode                    " display the current mode
@@ -70,6 +73,11 @@
     set number                      " Line numbers on
     set laststatus=2                " Always show statusline
     set scrolloff=10                " Start scroll 10 lines away from top/bottom
+    set sidescrolloff=5             " Start scroll 5 lines away from the left
+    set sidescroll=1
+
+    set showbreak=↪
+    set display+=lastline
 
 
     " highlight the 81st and 101st columns
@@ -92,8 +100,10 @@
     set smartcase                   " case sensitive when uc present
 
     " Set :grep command to use The Silver Searcher
-    set grepprg="ag --nogroup --nocolor"
-
+    if executable('ag')
+        set grepprg=ag\ --nogroup\ --nocolor\ --column
+        set grepformat=%f:%l:%c%m
+    endif
 " }
 
 
