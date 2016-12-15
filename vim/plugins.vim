@@ -9,9 +9,16 @@ Plug 'airblade/vim-gitgutter'
 Plug 'altercation/vim-colors-solarized'
 Plug 'nanotech/jellybeans.vim'
 Plug 'michalbachowski/vim-wombat256mod'
+Plug 'morhetz/gruvbox'
+Plug 'junegunn/rainbow_parentheses.vim'
+
 
 " Language Support
 Plug 'fatih/vim-go'
+Plug 'elmcast/elm-vim'
+Plug 'tpope/vim-fugitive'
+
+
 
 " Misc
 Plug 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle' }
@@ -56,6 +63,9 @@ call plug#end()
     let g:syntastic_auto_loc_list = 1
     let g:syntastic_check_on_open = 1
     let g:syntastic_check_on_wq = 0
+
+    let g:syntastic_php_checkers=['php', 'phpcs']
+    let g:syntastic_php_phpcs_args='--standard=PSR2 -n'
 " }
 
 
@@ -73,3 +83,23 @@ call plug#end()
         \ -g ""'
 " }
 
+
+" Rainbow Parentheses: {
+
+    " Activation based on file type
+    augroup rainbow_lisp
+        autocmd!
+        autocmd FileType php,go,scheme RainbowParentheses
+    augroup END
+
+    let g:rainbow#max_level = 16
+    let g:rainbow#pairs = [['(', ')'], ['[', ']']]
+
+    " List of colors that you do not want. ANSI code or #RRGGBB
+    " let g:rainbow#blacklist = [233, 234]
+
+" }
+"
+
+
+let g:gruvbox_contrast_dark='medium'
