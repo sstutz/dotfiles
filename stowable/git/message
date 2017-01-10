@@ -1,0 +1,31 @@
+Replace this line with imperative summary*
+
+An awesome description describing WHY this work over HOW/WHAT it does.
+The diff attached to commit should describe implementation (HOW)
+well-enough.
+
+#-----------------------------------------------|----------------------#
+#
+# 1. Summary should be under 50 characters, marked by |
+#
+# 2. Description should be wrapped to 72 characters, marked by #
+#
+
+# Rule 1, use meta operation
+#
+# Add: new function to rule the world
+# Mod: query_date logic
+# Rem: user.rake is not used anymore
+# Ren: hello-world to hell-world
+# Fix: #1900, stupid typo
+# Ref: extract to an abstract class.
+# Opt: cache in get_active_table
+
+# Rule 2, leave a "*" at the end to flag folding
+#
+# Mod: query_date logic*
+#
+# Use chronic to guess date.
+#
+# Chronic.parse('may 27th', :guess => false)
+# #=> Sun May 27 00:00:00 PDT 2007..Mon May 28 00:00:00 PDT 2007

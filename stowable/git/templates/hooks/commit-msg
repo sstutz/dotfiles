@@ -1,0 +1,32 @@
+#!/usr/bin/env bash
+
+continueCommit() {
+    exit 0
+}
+
+abort() {
+    exit 1
+}
+
+wrongAnswer() {
+    echo "Please answer Yes or No to continue"
+}
+
+# capture stdin, seems hacky
+exec < /dev/tty
+
+while true; do
+    read -p "Commit message is not properly formatted, are you sure you want to commit? (Yes/No)" yn
+
+    case $yn in
+        Yes ) continueCommit;;
+        no ) abort;;
+        * ) wrongAnswer;;
+    esac
+done
+
+# close stdin
+trap exec <&- EXIT
+
+# vim: set ft=sh:
+

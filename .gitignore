@@ -1,9 +1,7 @@
-vim/.netrwhist
-vim/viminfo
+stowable/vim/.netrwhist
+stowable/vim/viminfo
+stowable/vim/autoload/
+stowable/vim/plugged/
+stowable/zsh/.zsh/zhistory
+.stowlock
 *.swp
-vim/.vim/bundle/*
-dotfiles_old/
-zsh/zplug/
-vim/autoload/
-vim/plugged/
-zsh/.zsh/zhistory
