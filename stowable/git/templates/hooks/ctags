@@ -1,0 +1,21 @@
+#!/usr/bin/env bash
+
+set -o errexit
+set -o errtrace
+set -o nounset
+set -o pipefail
+
+# .git dir of the project, this is where we gonna store the ctags file
+dir=$(git rev-parse --git-dir)
+
+cleanUp() {
+    rm -f "$dir/$$.tags"
+}
+
+# make sure we gonna clean up in case something goes wrong
+trap cleanUp EXIT
+
+git ls-files | ctags --tag-relative -L - -f"$dir/$$.tags" --languages=-javascript,sql
+
+mv "$dir/$$.tags" "$dir/tags"
+

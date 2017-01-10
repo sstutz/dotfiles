@@ -1,0 +1,28 @@
+# X stuff ..cos we're still waiting for wayland to become a thing.
+xorg-xev
+xorg-server
+xorg-server-utils
+xorg-xinit
+mesa
+xf86-input-synaptics
+xf86-video-intel
+
+
+# Window Manager
+i3
+i3blocks
+
+# Utilities
+albert
+archey3
+gnome-terminal
+nautilus
+dropbox
+nautilus-dropbox
+screencloud
+google-musicmanager
+networkmanager
+networkmanager-applet
+gnome-keyring
+gparted
+

@@ -1,0 +1,26 @@
+# Virtual machine
+vagrant
+virtualbox
+virtualbox-host-modules-arch
+
+
+# Editors
+vim
+neovim
+visual-studio-code
+
+
+# languages
+php
+go
+google-appengine-go
+ruby
+python
+awk
+
+# Misc dev stuff
+the_silver_searcher
+ack
+git
+git-lfs
+ctags

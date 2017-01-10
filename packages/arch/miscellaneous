@@ -1,0 +1,12 @@
+pkgfile
+ncftp
+dialog
+rsync
+toilet
+feh
+
+# laptop related
+laptop-mode-tools
+hdparm
+sdparm
+ethtool

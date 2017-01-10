@@ -1,0 +1,12 @@
+# File System stuff
+ntfs-3g
+nfs-utils
+gvfs-smb
+smbclient
+
+# Monitoring
+htop
+iotop
+lsof
+lm_sensors
+

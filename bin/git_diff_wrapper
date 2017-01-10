@@ -1,3 +1,0 @@
-#!/usr/bin/env sh
-vimdiff "$2" "$5"
-
