@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-ZPLUG_INSTALL_PATH="~/.zplug"
+ZPLUG_INSTALL_PATH="$HOME/.zplug"
 # Check if zplug is installed
 if [[ ! -d "$ZPLUG_INSTALL_PATH" ]]; then
     git clone https://github.com/zplug/zplug "$ZPLUG_INSTALL_PATH"
