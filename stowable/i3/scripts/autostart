@@ -1,7 +1,7 @@
 #!/usr/bin/bash
 
 # startup dropbox
-if [[ ! $(pgrep dropbox) ]]; then
+if [[ ! $(pgrep dropbox) && -x dropboxd ]]; then
     dropboxd &
 else
     echo "dropbox is running already"

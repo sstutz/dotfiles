@@ -19,4 +19,4 @@ if which rsync >/dev/null; then
 fi
 
 # Include custom aliases
-[[ -f .aliases.local ]] && source ~/.aliases.local
+[[ -f ~/.aliases.local ]] && source ~/.aliases.local

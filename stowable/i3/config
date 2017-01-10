@@ -1,11 +1,10 @@
 # i3 config file (v4)
-#
 # Please see http://i3wm.org/docs/userguide.html for a complete reference!
 set $mod Mod4
 
 # Font for window titles. Will also be used by the bar unless a different font
 # is used in the bar {} block below.
-font pango: Droid Sans, FontAwesome 10
+font pango:Roboto Light 10
 
 # Use Mouse+$mod to drag floating windows to their wanted position
 floating_modifier $mod
@@ -16,19 +15,11 @@ bindsym $mod+Return exec gnome-terminal
 # kill focused window
 bindsym $mod+Shift+q kill
 
-# start dmenu (a program launcher)
-# bindsym $mod+d exec dmenu, let albert handle it
-# There also is the (new) i3-dmenu-desktop which only displays applications
-# shipping a .desktop file. It is a wrapper around dmenu, so you need that
-# installed.
-# bindsym $mod+d exec --no-startup-id i3-dmenu-desktop
-#
-# Rofi binding, in case I'll ever decide to ditch alfred again
+# Rofi binding
 bindsym $mod+d exec --no-startup-id i3-dmenu-desktop --dmenu='rofi -i -dmenu'
 
 # Disable Title
 new_window pixel 1
-
 
 # change focus
 bindsym $mod+h focus left
@@ -80,7 +71,6 @@ bindsym $mod+a focus parent
 # focus the child container
 bindsym $mod+z focus child
 
-
 # 1: Internet & Network 
 # 2: Office & Documents 
 # 3: Social Media & Email 
@@ -101,7 +91,6 @@ set $ws7  "7:  "
 set $ws8  "8:  "
 set $ws9  "9:  "
 set $ws10 "10:  "
-
 
 # switch to workspace
 bindsym $mod+1 workspace $ws1
@@ -141,16 +130,16 @@ bindsym $mod+odiaeresis exec "bash $HOME/.i3/i3lockscreen"
 
 # resize window (you can also use the mouse for that)
 mode "resize" {
-        bindsym h resize shrink width 10 px or 10 ppt
-        bindsym j resize grow height 10 px or 10 ppt
-        bindsym k resize shrink height 10 px or 10 ppt
-        bindsym l resize grow width 10 px or 10 ppt
+        bindsym h resize shrink width   10 px or 10 ppt
+        bindsym j resize grow   height  10 px or 10 ppt
+        bindsym k resize shrink height  10 px or 10 ppt
+        bindsym l resize grow   width   10 px or 10 ppt
 
         # same bindings, but for the arrow keys
-        bindsym Left resize shrink width 10 px or 10 ppt
-        bindsym Down resize grow height 10 px or 10 ppt
-        bindsym Up resize shrink height 10 px or 10 ppt
-        bindsym Right resize grow width 10 px or 10 ppt
+        bindsym Left resize shrink  width   10 px or 10 ppt
+        bindsym Down resize grow    height  10 px or 10 ppt
+        bindsym Up resize shrink    height  10 px or 10 ppt
+        bindsym Right resize grow   width   10 px or 10 ppt
 
         # back to normal: Enter or Escape
         bindsym Return mode "default"
@@ -160,19 +149,8 @@ mode "resize" {
 bindsym $mod+r mode "resize"
 
 
-
-# ======================================================= #
-#                     SETUP COLORS
-# ======================================================= #
-
-# -------------------------------------------------------
-#                       Shared
-# -------------------------------------------------------
-
-
-# -------------------------------------------------------
-#                       Clients
-# -------------------------------------------------------
+# Colours Setup
+# -------------
 
 set $border-color         #323537
 
@@ -183,34 +161,16 @@ set $urgent-border-color  #CF6A4C
 
 set $indicator-color      #1b1918
 
+set $inactive-text-color #68615e
+
+set $urgent-text-color  #f22c40
+
 # window colors
-#                       border                  background              text                    indicator
-client.focused          $focused-border-color   $focused-border-color   $inactive-text-color    $focused-border-color
-client.unfocused        $border-color           $border-color           $inactive-text-color    $border-color
-client.focused_inactive $border-color           $border-color           $inactive-text-color    $border-color
-client.urgent           $urgent-bg-color        $urgent-border-color    $urgent-text-color      $border-color
-
-# -------------------------------------------------------
-#                       Workspaces
-# -------------------------------------------------------
-
-# bar
-set $bar-bg               #1b1918
-set $bar-separator        #a8a19f
-
-set $bar-focused-border   #a8a19f
-set $bar-focused-bg       #1b1918
-set $bar-focused-text     #f1efee
-
-set $bar-inactive-border  #2c2421
-set $bar-inactive-bg      #1b1918
-set $bar-inactive-text    #68615e
-
-set $bar-urgent-border    #f22c40
-set $bar-urgent-bg        #1b1918
-set $bar-urgent-text      #f22c40
-
-
+#                       border                  background              text                    indicator               child_border
+client.focused          $focused-border-color   $focused-border-color   $inactive-text-color    $focused-border-color   #ff0000
+client.unfocused        $border-color           $border-color           $inactive-text-color    $border-color           #00ff00
+client.focused_inactive $border-color           $border-color           $inactive-text-color    $border-color           #0000ff
+client.urgent           $urgent-bg-color        $urgent-border-color    $urgent-text-color      $border-color           #f0000f
 
 # Start i3bar to display a workspace bar (plus the system information i3status
 # finds out, if available)
@@ -220,50 +180,53 @@ bar {
     status_command i3blocks -c ~/.config/i3blocks/i3blocks.conf
     separator_symbol " "
     workspace_buttons yes
+<<<<<<< HEAD:stowable/i3/config
     font pango:Hack, FontAwesome 11
+=======
+>>>>>>> 7e46a524cfde3928d11e16918d7c13f028cb377a:i3/config
 
     colors {
 
-        background $bar-bg
-        separator $bar-separator
+        # Whole color settings
+        background #00000000
+        statusline #ffffff
+        separator  #1e1e1e
 
-        #                  border               background         text
-        focused_workspace  $bar-focused-border  $bar-focused-bg    $bar-focused-text
-        inactive_workspace $bar-inactive-border $bar-inactive-bg   $bar-inactive-text
-        urgent_workspace   $bar-urgent-border   $bar-urgent-bg     $bar-urgent-text
+        # Type             border  background font
+        focused_workspace  #1e1e1e #1e1e1e #cf6a4c
+        active_workspace   #1e1e1e #222222 #cf6a4c
+        inactive_workspace #1e1e1e #1e1e1e #888888
+        urgent_workspace   #aa0000 #990000 #ffffff
 
-       # background  #343d46
-       # statusline  #eff1f5
-       # separator   #323232
+       # background  #1b1918
+        #statusline  #ffffff
+        #separator   #a8a19f
 
-       # focused_workspace   #a3be8c #65737e #eff1f5
-       # active_workspace    #4f5b66 #5f676a #eff1f5
-       # inactive_workspace  #4f5b66 #4f5b66 #a7adba
-       # urgent_workspace    #bf616a #65737e #eff1f5
+        #                  border       background  text
+        #focused_workspace  #a8a20f      #1b1919     #f1efee
+        #active_workspace   #2c2421      #1b1918     #68615e
+        #inactive_workspace #2c2421      #1b1918     #68615e
+        #urgent_workspace   #f22c40      #1b1918     #f22c40
+
     }
 }
 
-
-#
 # Custom bindings
-#
 exec --no-startup-id bash ~/.config/i3/scripts/autostart
 exec --no-startup-id bash ~/.config/i3/scripts/wallpaper
 exec --no-startup-id compton --config ~/.config/compton.conf -b --opacity-rule '100:window_type = "dock" && class_g = "i3bar"'
 exec --no-startup-id dunst
-
 
 # Pulse Audio controls
 bindsym XF86AudioRaiseVolume exec --no-startup-id amixer -q sset Master 5%+
 bindsym XF86AudioLowerVolume exec --no-startup-id amixer -q sset Master 5%-
 bindsym XF86AudioMute exec --no-startup-id amixer -q sset Master toggle
 
-
 # Sreen brightness controls
 bindsym XF86MonBrightnessUp exec xbacklight -inc 10 # increase screen brightness
 bindsym XF86MonBrightnessDown exec xbacklight -dec 10 # decrease screen brightness
 
-
+# Capslock and Numpad Indicator
 bindsym --release Caps_Lock exec pkill -SIGRTMIN+11 i3blocks
 bindsym --release Num_Lock  exec pkill -SIGRTMIN+11 i3blocks
 
