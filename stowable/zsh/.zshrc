@@ -14,3 +14,4 @@ for config in ~/.zsh/*; do
     fi
 done;
 
+[[ -f ~/.zshrc.local ]] && source ~/.zshrc.local
