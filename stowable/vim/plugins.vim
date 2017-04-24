@@ -97,9 +97,17 @@ call plug#end()
 
     " List of colors that you do not want. ANSI code or #RRGGBB
     " let g:rainbow#blacklist = [233, 234]
-
 " }
-"
+
+
+" Splice: {
+    let g:splice_initial_layout_grid = 1
+" }
+
+
+" Elm: {
+    let g:elm_format_autosave = 1
+" }
 
 
 let g:gruvbox_contrast_dark='medium'
