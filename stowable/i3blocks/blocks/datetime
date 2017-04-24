@@ -4,11 +4,8 @@ if [[ "${BLOCK_BUTTON}" -eq 3 ]]; then
     google-chrome-stable https://calendar.google.com &
 fi
 
-
-
 FORMAT="${BLOCK_INSTANCE:-%H:%M %d.%m.%y}"
 DATETIME=$(date "+${FORMAT}")
 
-echo "${DATETIME}"
 echo "${DATETIME}"
 echo ""

@@ -126,7 +126,7 @@ bindsym $mod+Shift+r restart
 bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -b 'Yes, exit i3' 'i3-msg exit'"
 
 # i3Lock screen
-bindsym $mod+odiaeresis exec "bash $HOME/.i3/i3lockscreen"
+bindsym $mod+Control+l exec "$HOME/.config/i3/scripts/i3lockscreen"
 
 # resize window (you can also use the mouse for that)
 mode "resize" {
@@ -151,26 +151,13 @@ bindsym $mod+r mode "resize"
 
 # Colours Setup
 # -------------
-
-set $border-color         #323537
-
-set $focused-text-color   #FFFFFF
-set $focused-border-color #C3C3C3
-
-set $urgent-border-color  #CF6A4C
-
-set $indicator-color      #1b1918
-
-set $inactive-text-color #68615e
-
-set $urgent-text-color  #f22c40
-
 # window colors
-#                       border                  background              text                    indicator               child_border
-client.focused          $focused-border-color   $focused-border-color   $inactive-text-color    $focused-border-color   #ff0000
-client.unfocused        $border-color           $border-color           $inactive-text-color    $border-color           #00ff00
-client.focused_inactive $border-color           $border-color           $inactive-text-color    $border-color           #0000ff
-client.urgent           $urgent-bg-color        $urgent-border-color    $urgent-text-color      $border-color           #f0000f
+#                       border  background  text        indicator   child_border
+client.focused          #81a2be #81a2be     #1d1f21     #282a2e
+client.focused_inactive #373b41 #373b41     #969896     #282a2e
+client.unfocused        #282a2e #282a2e     #969896     #282a2e
+client.urgent           #373b41 #cc6666     #ffffff     #cc6666
+
 
 # Start i3bar to display a workspace bar (plus the system information i3status
 # finds out, if available)
@@ -182,45 +169,27 @@ bar {
     workspace_buttons yes
 <<<<<<< HEAD:stowable/i3/config
     font pango:Hack, FontAwesome 11
-=======
->>>>>>> 7e46a524cfde3928d11e16918d7c13f028cb377a:i3/config
-
     colors {
-
-        # Whole color settings
-        background #00000000
-        statusline #ffffff
-        separator  #1e1e1e
-
-        # Type             border  background font
-        focused_workspace  #1e1e1e #1e1e1e #cf6a4c
-        active_workspace   #1e1e1e #222222 #cf6a4c
-        inactive_workspace #1e1e1e #1e1e1e #888888
-        urgent_workspace   #aa0000 #990000 #ffffff
-
-       # background  #1b1918
-        #statusline  #ffffff
-        #separator   #a8a19f
-
-        #                  border       background  text
-        #focused_workspace  #a8a20f      #1b1919     #f1efee
-        #active_workspace   #2c2421      #1b1918     #68615e
-        #inactive_workspace #2c2421      #1b1918     #68615e
-        #urgent_workspace   #f22c40      #1b1918     #f22c40
-
+        separator #969896
+        background #1d1f21
+        statusline #c5c8c6
+        focused_workspace #81a2be #81a2be #1d1f21
+        active_workspace #373b41 #373b41 #ffffff
+        inactive_workspace #282a2e #282a2e #969896
+        urgent_workspace #cc6666 #cc6666 #ffffff
     }
 }
 
 # Custom bindings
 exec --no-startup-id bash ~/.config/i3/scripts/autostart
 exec --no-startup-id bash ~/.config/i3/scripts/wallpaper
-exec --no-startup-id compton --config ~/.config/compton.conf -b --opacity-rule '100:window_type = "dock" && class_g = "i3bar"'
+exec --no-startup-id compton --config ~/.config/compton.conf -b --opacity-rule '100:window_type = "dock" && class_g = "i3blocks"'
 exec --no-startup-id dunst
 
 # Pulse Audio controls
-bindsym XF86AudioRaiseVolume exec --no-startup-id amixer -q sset Master 5%+
-bindsym XF86AudioLowerVolume exec --no-startup-id amixer -q sset Master 5%-
-bindsym XF86AudioMute exec --no-startup-id amixer -q sset Master toggle
+bindsym XF86AudioRaiseVolume exec --no-startup-id amixer -q -D pulse sset Master 5%+
+bindsym XF86AudioLowerVolume exec --no-startup-id amixer -q -D pulse sset Master 5%-
+bindsym XF86AudioMute exec --no-startup-id amixer -q -D pulse sset Master toggle
 
 # Sreen brightness controls
 bindsym XF86MonBrightnessUp exec xbacklight -inc 10 # increase screen brightness
