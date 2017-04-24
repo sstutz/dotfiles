@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-WALLPAPER="material_wp_1341.png"
-feh --bg-scale "/home/steven/Downloads/$WALLPAPER"
+WALLPAPER="city.jpg"
 
-#feh  --bg-fill
+feh --bg-scale "/home/steven/Pictures/Wallpapers/$WALLPAPER"
+
