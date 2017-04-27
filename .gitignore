@@ -1,3 +1,4 @@
+stowable/git/*local
 stowable/vim/.netrwhist
 stowable/vim/viminfo
 stowable/vim/autoload/
