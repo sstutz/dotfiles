@@ -1,7 +1,7 @@
 call plug#begin('~/.vim/plugged')
 
 " Visual
-Plug 'vim-airline/vim-airline' | Plug 'vim-airline/vim-airline-themes'
+Plug 'itchyny/lightline.vim'
 Plug 'edkolev/tmuxline.vim'
 Plug 'airblade/vim-gitgutter'
 
@@ -10,25 +10,24 @@ Plug 'altercation/vim-colors-solarized'
 Plug 'nanotech/jellybeans.vim'
 Plug 'michalbachowski/vim-wombat256mod'
 Plug 'morhetz/gruvbox'
-Plug 'junegunn/rainbow_parentheses.vim'
 Plug 'trevordmiller/nova-vim'
 
 " Language Support
 Plug 'fatih/vim-go'
 Plug 'elmcast/elm-vim'
 Plug 'tpope/vim-fugitive'
-
-
+Plug 'joonty/vdebug'
 
 " Misc
 Plug 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle' }
+Plug 'scrooloose/syntastic'
 Plug 'mattn/emmet-vim'
 Plug 'ctrlpvim/ctrlp.vim'
-Plug 'scrooloose/syntastic'
 Plug 'tpope/vim-surround'
 Plug 'sjl/splice.vim'
 Plug 'FelikZ/ctrlp-py-matcher'
 Plug 'mhinz/vim-startify'
+Plug 'mbbill/undotree'
 
 " Add plugins to &runtimepath
 call plug#end()
@@ -61,17 +60,24 @@ call plug#end()
 
     let g:syntastic_always_populate_loc_list = 1
     let g:syntastic_auto_loc_list = 1
-    let g:syntastic_check_on_open = 1
+    let g:syntastic_check_on_open = 0
     let g:syntastic_check_on_wq = 0
+    let g:syntastic_aggregate_errors = 1
+    let g:syntastic_id_checkers = 1
 
-    let g:syntastic_php_checkers=['php', 'phpcs']
+    let g:syntastic_error_symbol = "☠"
+    let g:syntastic_warning_symbol = "⚠"
+    let g:syntastic_style_error_symbol = "☢"
+    let g:syntastic_style_warning_symbol = '💩'
+
+    let g:syntastic_php_checkers=['php', 'phpcs', 'phpmd']
     let g:syntastic_php_phpcs_args='--standard=PSR2 -n'
 " }
 
 
 " CtrlP: {
     " Ignore certain folders/files
-    let g:ctrlp_custom_ignore = '\v[\/]\.(git|idea|svn|hg|DS_Store)$'   " Ignore .git and .idea directories
+    let g:ctrlp_custom_ignore = '\v[\/]\.(git|idea|svn|hg|DS_Store)$'
 
     " faster matcher
     let g:ctrlp_match_func = { 'match': 'pymatcher#PyMatch' }
@@ -84,22 +90,6 @@ call plug#end()
 " }
 
 
-" Rainbow Parentheses: {
-
-    " Activation based on file type
-    augroup rainbow_lisp
-        autocmd!
-        autocmd FileType php,go,scheme RainbowParentheses
-    augroup END
-
-    let g:rainbow#max_level = 16
-    let g:rainbow#pairs = [['(', ')'], ['[', ']']]
-
-    " List of colors that you do not want. ANSI code or #RRGGBB
-    " let g:rainbow#blacklist = [233, 234]
-" }
-
-
 " Splice: {
     let g:splice_initial_layout_grid = 1
 " }
@@ -109,5 +99,39 @@ call plug#end()
     let g:elm_format_autosave = 1
 " }
 
+
+" Vdebug: {
+    let g:vdebug_keymap = {
+    \   "run" : "<Leader><F5>",
+    \   "run_to_cursor" : "<Down>",
+    \   "step_over" : "<Up>",
+    \   "step_into" : "<Left>",
+    \   "step_out" : "<Right>",
+    \   "close" : "q",
+    \   "detach" : "<F7>",
+    \   "set_breakpoint" : "<Leader>s",
+    \   "eval_visual" : "<Leader>e"
+    \}
+
+    " Mapping '/remote/path' : '/local/path'
+    let g:vdebug_options= {
+    \   "port" : 9001,
+    \   "server" : '',
+    \   "timeout" : 30,
+    \   "on_close" : 'detach',
+    \   "break_on_open" : 1,
+    \   "max_children" : 128,
+    \   "ide_key" : 'docker',
+    \   "path_maps" : {
+    \   },
+    \   "debug_window_level" : 0,
+    \   "debug_file_level" : 0,
+    \   "debug_file" : "~/vdebug.log",
+    \   "watch_window_style" : 'expanded',
+    \   "marker_default" : '⬦',
+    \   "marker_closed_tree" : '▸',
+    \   "marker_open_tree" : '▾'
+    \}
+" }
 
 let g:gruvbox_contrast_dark='medium'
