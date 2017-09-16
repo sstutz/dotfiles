@@ -55,7 +55,9 @@
     default = matching
 
 [credential]
-    helper = store
+    helper = store --file ~/.config/git/credentials
 
 [commit]
-	template = ~/.config/git/message
+    template = ~/.config/git/message
+[user]
+	useConfigOnly = true
