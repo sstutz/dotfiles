@@ -1,6 +1,3 @@
-# Force tmux to assume the terminal supports 256 colours
-alias tmux='tmux -2'
-
 # a more readable ls output
 alias ll='ls -AlrthF'
 
@@ -17,6 +14,8 @@ alias reload=". ~/.zshrc && echo 'ZSH config reloaded from ~/.zshrc'"
 if which rsync >/dev/null; then
     alias cp="rsync --progress -avzh"
 fi
+
+alias phpqa="docker run -it --rm -v $(pwd):/project -w /project jakzal/phpqa:alpine"
 
 # Include custom aliases
 [[ -f ~/.aliases.local ]] && source ~/.aliases.local

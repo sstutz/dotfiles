@@ -23,7 +23,7 @@ put_spacing() {
   fi
 
   local termwidth
-  (( termwidth = ${COLUMNS} - 5 - ${#USER}- ${#HOST} - ${#$(get_pwd)} - ${git} ))
+  (( termwidth = ${COLUMNS} - 8 - ${#USER} - ${#HOST} - ${#$(get_pwd)} - ${git} ))
 
   local spacing=""
   for i in {1..$termwidth}; do
@@ -49,6 +49,6 @@ getIcon(){
 }
 
 precmd() {
-    print -rP '%(!.%{$fg_bold[red]%}.%{$fg_bold[green]%}%n@)%m $fg[yellow]in $(get_pwd)$(put_spacing)$(git_prompt_info)'
+    print -rP '%(!.%{$fg_bold[red]%}.%{$fg_bold[green]%}%n $fg[yellow]on $fg[green]%m $fg[yellow]in $(get_pwd)$(put_spacing)$(git_prompt_info)'
 }
 PROMPT='%{$reset_color%}$(getIcon) '

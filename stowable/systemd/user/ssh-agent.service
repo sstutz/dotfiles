@@ -1,0 +1,12 @@
+[Unit]
+Description=SSH Agent
+
+[Service]
+Type=simple
+Environment=SSH_AUTH_SOCK=%t/ssh-agent.sock
+ExecStartPre=/bin/systemctl --user import-environment SSH_AUTH_SOCK
+ExecStart=/usr/bin/ssh-agent -D -a $SSH_AUTH_SOCK
+Restart=always
+
+[Install]
+WantedBy=default.target

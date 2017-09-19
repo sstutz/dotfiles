@@ -1,0 +1,17 @@
+#!/bin/sh
+
+cleanup() {
+    # List all files that have been merged except master/stable
+    branches=$(git branch --merged | egrep -v "(^\*|master|stable|1.*)")
+
+    git branch --delete --force $branches
+
+    # cleanup unnecessary files and loose objects
+    git gc --auto
+
+    # Remove stale remote tracking branches
+    git remote prune origin
+
+}
+
+cleanup

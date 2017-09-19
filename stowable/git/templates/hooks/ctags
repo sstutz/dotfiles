@@ -15,7 +15,12 @@ cleanUp() {
 # make sure we gonna clean up in case something goes wrong
 trap cleanUp EXIT
 
-git ls-files | ctags --tag-relative -L - -f"$dir/$$.tags" --languages=-javascript,sql
+git ls-files | ctags \
+    --tag-relative \        #
+    -L - \                  # Rad File from stdout, git ls-files that is.
+    -f "$dir/$$.tags" \
+    --fields=aimlS \
+    --languages=-php,sql \
+    --PHP-Kinds=+cf-v
 
 mv "$dir/$$.tags" "$dir/tags"
-

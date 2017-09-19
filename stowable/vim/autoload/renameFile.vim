@@ -1,4 +1,4 @@
-function! RenameFile()
+function! renameFile#RenameFile()
     let old_name = expand('%')
     let new_name = input('New file name: ', expand('%'), 'file')
     if new_name != '' && new_name != old_name
@@ -7,6 +7,3 @@ function! RenameFile()
         redraw!
     endif
 endfunction
-
-map <leader>n :call RenameFile()<cr>
-

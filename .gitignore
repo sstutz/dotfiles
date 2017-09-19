@@ -1,8 +1,9 @@
 stowable/git/*local
 stowable/vim/.netrwhist
 stowable/vim/viminfo
-stowable/vim/autoload/
+stowable/vim/autoload/plug.vim
 stowable/vim/plugged/
 stowable/zsh/.zsh/zhistory
+stowable/gnupg/.gnupg/private-keys-v1.d/
 .stowlock
 *.swp

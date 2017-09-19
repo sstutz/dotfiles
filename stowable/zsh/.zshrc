@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-for function in ~/dotfiles/scripts/*; do
+for function in ~/.config/dotfiles/scripts/*; do
     if [[ -e "$function" ]]; then
         . $function
     else
@@ -15,3 +15,5 @@ for config in ~/.zsh/*; do
 done;
 
 [[ -f ~/.zshrc.local ]] && source ~/.zshrc.local
+
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh

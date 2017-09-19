@@ -1,0 +1,35 @@
+*mydoc.txt* A collection of Vim snippets/tricks I'd probably forget otherwise
+*mydoc*
+
+==============================================================================
+CONTENTS                                                    *mydoc-contents*
+
+   01. Intro ................................................. |mydoc-intro|
+   02. Snippets ........................................... |mydoc-snippets|
+   03. Update this help ..................................... |mydoc-update|
+
+==============================================================================
+INTRODUCTION                                                    *mydoc-intro*
+
+I really suck at memorizing certain things, especially Vim things I don't
+do on a daily basis. This file helps me to keep track of those things.
+
+==============================================================================
+SNIPPETS                                                    *mydoc-snippets*
+
+Some of those snippets are ex commands, the easiest way to use them is to
+select the command without the : and then do c-r" to past the command
+into vim's command line
+
+Remove all blank lines but one
+
+    :g/^$\n$/d
+
+==============================================================================
+UPDATE                                                        *mydoc-update*
+
+To update this file simply do
+
+    :helpt ~/.vim/doc
+
+vim:tw=78:ts=8:ft=help:norl:

@@ -59,5 +59,6 @@
 
 [commit]
     template = ~/.config/git/message
+
 [user]
-	useConfigOnly = true
+    useConfigOnly = true

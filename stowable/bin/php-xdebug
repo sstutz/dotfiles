@@ -1,0 +1,2 @@
+#!/usr/bin/env sh
+XDEBUG_CONFIG="remote_host=127.0.0.1" php "$1"

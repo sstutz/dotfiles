@@ -8,5 +8,5 @@ create_session() {
 }
 
 if [[ "$TERM" != "screen-256color" ]]; then
-    tmux attach-session -t "$USER" || create_session "$USER"
+    tmux has-session -t $USER 2>/dev/null  || create_session "$USER"
 fi
