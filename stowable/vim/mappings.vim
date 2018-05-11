@@ -4,7 +4,7 @@ let mapleader="\<space>"
 nnoremap <silent> <Leader>W :w !sudo tee % > /dev/null<CR>:edit!<CR>
 
 " bind G to grep word under cursor
-nnoremap <leader>G :grep! "\b<C-R><C-W>\b"<CR>:cw<CR>
+nnoremap <leader>G :Rg <C-R><C-W><CR>
 
 if has('nvim')
     tnoremap <Esc> <C-\><C-n>
@@ -41,10 +41,10 @@ imap <c-space> <Plug>(asyncomplete_force_refresh)
 
 map <leader>n :call renameFile#RenameFile()<cr>
 
-
 " Vim-Test Mappings
 nmap <silent> <leader>tn :TestNearest<CR>
 nmap <silent> <leader>tf :TestFile<CR>
 nmap <silent> <leader>ts :TestSuite<CR>
 nmap <silent> <leader>tl :TestLast<CR>
 nmap <silent> <leader>gt :TestVisit<CR>
+

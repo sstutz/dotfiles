@@ -14,8 +14,8 @@ Plug 'morhetz/gruvbox'
 " Language Support
 Plug 'fatih/vim-go', {'for': 'go'}
 Plug 'elmcast/elm-vim', {'for': 'elm'}
-Plug 'lvht/phpcd.vim', { 'for': 'php', 'do': 'composer install' }
-Plug 'joonty/vdebug', { 'for': 'php', 'on': 'Breakpoint' }
+Plug 'phpactor/phpactor', { 'for': 'php', 'do': 'composer install' }
+Plug 'vim-vdebug/vdebug', { 'for': 'php', 'on': 'Breakpoint' }
 Plug 'lambdalisue/gina.vim'
 Plug 'sheerun/vim-polyglot'
 
@@ -43,6 +43,10 @@ let test#strategy = 'vimterminal'
 
 " Add plugins to &runtimepath
 call plug#end()
+
+
+" extends % functionality
+runtime! macros/matchit.vim
 
 " Plugin specific settings
 runtime! macros/sandwich/keymap/surround.vim
