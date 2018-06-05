@@ -33,12 +33,14 @@ Plug 'tpope/vim-commentary'
 Plug 'junegunn/vim-plug'
 
 function! DockerTransform(cmd) abort
-    let docker_project = filereadable('docker/deploy.sh')
     return './docker/deploy.sh exec php bash -c "APP_ENV=testing ' . a:cmd . '"'
 endfunction
 
-let g:test#custom_transformations = {'docker': function('DockerTransform')}
-let g:test#transformation = 'docker'
+if filereadable('docker/deploy.sh')
+    let g:test#custom_transformations = {'docker': function('DockerTransform')}
+    let g:test#transformation = 'docker'
+endif
+
 let test#strategy = 'vimterminal'
 
 " Add plugins to &runtimepath
