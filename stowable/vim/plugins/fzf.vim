@@ -1,10 +1,5 @@
 if executable('rg')
     let $FZF_DEFAULT_COMMAND = 'rg --hidden -l -i ""'
-elseif executable('ag')
-    let $FZF_DEFAULT_COMMAND = 'ag --hidden -l -g ""'
-endif
-
-if executable('rg')
     command! -bang -nargs=* Rg
                 \ call fzf#vim#grep(
                 \   'rg --column --line-number --no-heading --color=always '.shellescape(<q-args>), 1,
@@ -15,16 +10,15 @@ if executable('rg')
     " Likewise, Files command with preview window
     command! -bang -nargs=? -complete=dir Files
                 \ call fzf#vim#files(<q-args>, fzf#vim#with_preview(), <bang>0)
+elseif executable('ag')
+    let $FZF_DEFAULT_COMMAND = 'ag --hidden -l -g ""'
 endif
+
 
 " Files + devicons
 function! Fzf_dev()
-    if executable('rougify')
-        let l:fzf_files_options =
-                    \ '--preview "echo {} | tr -s \" \" \"\n\" | tail -1 | xargs rougify | head -'.&lines.'"'
-    else
-        let l:fzf_files_options = '-x +s'
-    endif
+    let l:fzf_file_options =
+                \ '--preview "[[ \$(file --mime {2..-1}) =~ binary ]] && echo {2..-1} is a binary file || (highlight -O ansi -l {2..-1} || coderay {2..-1} || rougify {2..-1} || cat {2..-1}) 2> /dev/null | head -'.&lines.'"'
 
     function! s:files()
         let files = split(system($FZF_DEFAULT_COMMAND), '\n')
@@ -43,15 +37,15 @@ function! Fzf_dev()
     endfunction
 
     function! s:edit_file(item)
-        let parts = split(a:item, ' ')
-        let file_path = get(parts, 1, '')
+        let l:pos = stridx(a:item, ' ')
+        let l:file_path = a:item[pos+1:]
         execute 'silent e' file_path
     endfunction
 
     call fzf#run({
                 \ 'source': <sid>files(),
                 \ 'sink':   function('s:edit_file'),
-                \ 'options': '-m ' . l:fzf_files_options,
+                \ 'options': '-m ' . l:fzf_file_options,
                 \ 'down':    '40%'
                 \ })
 endfunction
