@@ -6,49 +6,49 @@ ZSH_THEME_GIT_PROMPT_SUFFIX="]$reset_color"
 
 
 git_prompt_info() {
-  ref=$(git symbolic-ref HEAD 2> /dev/null) || return
-  echo "$(parse_git_dirty)$ZSH_THEME_GIT_PROMPT_PREFIX$(current_branch)$ZSH_THEME_GIT_PROMPT_SUFFIX"
+    ref=$(git symbolic-ref HEAD 2> /dev/null) || return
+    echo "$(parse_git_dirty)$ZSH_THEME_GIT_PROMPT_PREFIX$(current_branch)$ZSH_THEME_GIT_PROMPT_SUFFIX"
 }
 
 get_pwd() {
-  print -D $PWD
+    print -D $PWD
 }
 
 put_spacing() {
-  local git=$(git_prompt_info)
-  if [ ${#git} != 0 ]; then
-    ((git=${#git} - 10))
-  else
-    git=0
-  fi
+    local git=$(git_prompt_info)
+    if [ ${#git} != 0 ]; then
+        ((git=${#git} - 10))
+    else
+        git=0
+    fi
 
-  local termwidth
-  (( termwidth = ${COLUMNS} - 8 - ${#USER} - ${#HOST} - ${#$(get_pwd)} - ${git} ))
+    local termwidth
+    (( termwidth = ${COLUMNS} - 5 - ${#USER}- ${#HOST} - ${#$(get_pwd)} - ${git} ))
 
-  local spacing=""
-  for i in {1..$termwidth}; do
-    spacing="${spacing} "
-  done
-  echo $spacing
+    local spacing=""
+    for i in {1..$termwidth}; do
+        spacing="${spacing} "
+    done
+    echo $spacing
 }
 
 getIcon(){
-	dir=${PWD##*/}
-	gitBranch=$(git branch 2>/dev/null | grep -e '\* ' | sed 's/^..\(.*\)/{\1}/')
-	icon="→"
+    dir=${PWD##*/}
+    gitBranch=$(git branch 2>/dev/null | grep -e '\* ' | sed 's/^..\(.*\)/{\1}/')
+    icon="→"
 
-	if [ -f .dropbox ]; then
-	    icon="☁"
-	elif [ "$dir" = "Music" ]; then
-	    icon="♫"
+    if [ -f .dropbox ]; then
+        icon="☁"
+    elif [ "$dir" = "Music" ]; then
+        icon="♫"
     elif [ "$gitBranch" != "" ]; then
-	    icon="±"
-	fi
+        icon="±"
+    fi
 
-	echo $icon;
+    echo $icon;
 }
 
 precmd() {
-    print -rP '%(!.%{$fg_bold[red]%}.%{$fg_bold[green]%}%n $fg[yellow]on $fg[green]%m $fg[yellow]in $(get_pwd)$(put_spacing)$(git_prompt_info)'
+    print -rP '%(!.%{$fg_bold[red]%}.%{$fg_bold[green]%}%n@)%m $fg[yellow]in $(get_pwd)$(put_spacing)$(git_prompt_info)'
 }
 PROMPT='%{$reset_color%}$(getIcon) '
