@@ -15,7 +15,7 @@ config() {
 
 backup_original_configuration() {
     mkdir -p "$BACKUP_DIR"
-    config checkout 2>&1 | egrep "\s+\." | awk {'print $1'} | xargs -I{} mv {} "$BACKUP_DIR/"{}
+    config checkout 2>&1 | awk '$1 ~ /^\./ {$1=$1; system("mv "$1" .config/dotfiles-org")}'
     echo "Original configuration stored in $BACKUP_DIR"
 }
 
