@@ -15,7 +15,7 @@ if which rsync >/dev/null; then
     alias cp="rsync --progress -avzh"
 fi
 
-alias phpqa="docker run -it --rm -v $(pwd):/project -w /project jakzal/phpqa:alpine"
+alias dotfiles='/usr/bin/git --git-dir=$HOME/.config/dotfiles --work-tree=$HOME'
 
 # Include custom aliases
 [[ -f ~/.aliases.local ]] && source ~/.aliases.local

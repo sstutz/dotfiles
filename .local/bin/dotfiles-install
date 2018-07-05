@@ -1,7 +1,7 @@
 #!/usr/bin/env sh
 
 DOTFILES_REPO="git@github.com:sstutz/dotfiles.git"
-DOTFILES_DIR="$HOME/.config/dotfiles2"
+DOTFILES_DIR="$HOME/.config/dotfiles"
 BACKUP_DIR="$HOME/.config/dotfiles-org"
 
 if [[ ! -x /usr/bin/git ]]; then
@@ -32,10 +32,10 @@ clone_dotfiles() {
 }
 
 checkout_dotfiles() {
-    if ! config checkout; then
+    if ! config checkout testing; then
         backup_original_configuration
     fi
-    if ! config checkout; then
+    if ! config checkout testing; then
         echo "Unknown error"
         exit 1
     fi
