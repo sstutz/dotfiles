@@ -3,6 +3,7 @@
 DOTFILES_REPO="git@github.com:sstutz/dotfiles.git"
 DOTFILES_DIR="$HOME/.config/dotfiles"
 BACKUP_DIR="$HOME/.config/dotfiles-org"
+BRANCH="testing"
 
 if [[ ! -x /usr/bin/git ]]; then
     echo "Please install git"
@@ -15,7 +16,7 @@ config() {
 
 backup_original_configuration() {
     mkdir -p "$BACKUP_DIR"
-    config checkout 2>&1 | awk '$1 ~ /^\./ {$1=$1; system("mv "$1" .config/dotfiles-org")}'
+    config checkout "$BRANCH" 2>&1 | awk '$1 ~ /^\./ {$1=$1; system("mv "$1" .config/dotfiles-org")}'
     echo "Original configuration stored in $BACKUP_DIR"
 }
 
@@ -32,10 +33,10 @@ clone_dotfiles() {
 }
 
 checkout_dotfiles() {
-    if ! config checkout testing; then
+    if ! config checkout "$BRANCH"; then
         backup_original_configuration
     fi
-    if ! config checkout testing; then
+    if ! config checkout "$BRANCH"; then
         echo "Unknown error"
         exit 1
     fi
