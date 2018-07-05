@@ -1,8 +1,8 @@
 #!/usr/bin/env bash
 
-for function in ~/.config/dotfiles/scripts/*; do
+for function in ~/.local/scripts/*; do
     if [[ -e "$function" ]]; then
-        . $function
+        source $function
     else
         echo "$function not found"
     fi
@@ -10,7 +10,7 @@ done;
 
 for config in ~/.zsh/*; do
     if [[ -e "$config" ]] && [[ "$config" != "$HOME/.zsh/zhistory" ]]; then
-        . $config
+        source $config
     fi
 done;
 

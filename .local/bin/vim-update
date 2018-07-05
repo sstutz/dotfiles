@@ -1,5 +1,4 @@
-#!/usr/bin/env zsh
-
+#!/usr/bin/env sh
 vim_update() {
     vim +PlugUpdate +UpdateRemotePlugins +qa
 }

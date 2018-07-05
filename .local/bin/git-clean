@@ -1,5 +1,4 @@
 #!/bin/sh
-
 cleanup() {
     # List all files that have been merged except master/stable
     branches=$(git branch --merged | egrep -v "(^\*|master|stable|1.*)")

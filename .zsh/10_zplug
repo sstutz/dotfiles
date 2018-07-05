@@ -17,7 +17,7 @@ zplug "zplug/zplug", hook-build:"zplug --self-manage"
 zplug "robbyrussell/oh-my-zsh", use:"lib/*.zsh", defer:0
 zplug "plugins/git",            from:oh-my-zsh, if:"(( $+commands[git] ))"
 zplug "plugins/git-flow-avh",   from:oh-my-zsh, if:"(( $+commands[git] ))"
-zplug "$DOTFILES/stowable/zsh/themes",   from:local, use:"devbox.zsh-theme", defer:1
+zplug "$HOME/.zsh/themes",   from:local, use:"devbox.zsh-theme", defer:1
 zplug "StackExchange/blackbox"
 zplug "unixorn/git-extra-commands"
 zplug "supercrabtree/k"

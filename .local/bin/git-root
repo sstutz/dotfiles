@@ -1,7 +1,6 @@
-#!/bin/sh
-
-root() {
+#!/usr/bin/env sh
+git_root() {
     git rev-parse --show-toplevel
 }
 
-root
+git_root
