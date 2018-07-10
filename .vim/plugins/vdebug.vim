@@ -5,7 +5,7 @@
     \   "step_over" : "<Up>",
     \   "step_into" : "<Left>",
     \   "step_out" : "<Right>",
-    \   "close" : "q",
+    \   "close" : "<leader>q",
     \   "detach" : "<F7>",
     \   "set_breakpoint" : "<Leader>b",
     \   "eval_visual" : "<Leader>e"
