@@ -1,6 +1,6 @@
 setlocal omnifunc=phpactor#Complete
 setlocal commentstring=//\ %s
-setlocal keywordprg=:terminal\ pman\ <cr>:q
+setlocal keywordprg=:terminal++close\ pman
 let g:neomake_php_phpcs_args_standard = 'PSR2'
 setlocal grepprg=rg\ --vimgrep\ --type\ php
 
