@@ -136,4 +136,10 @@
     let g:netrw_winsize = 25
 " }
 
+" Spelling: {
+    " leave spell disabled by default
+    " enable via ftplugin or manually if needed
+    set spelllang=en,de
+" }
+
 " vim: set sw=4 ts=4 sts=4 et tw=78 foldmarker={,} foldlevel=0 foldmethod=marker spell:
