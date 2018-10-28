@@ -48,3 +48,11 @@ nmap <silent> <leader>ts :TestSuite<CR>
 nmap <silent> <leader>tl :TestLast<CR>
 nmap <silent> <leader>gt :TestVisit<CR>
 
+" smarter command-line history navigation
+cnoremap <c-n>  <down>
+cnoremap <c-p>  <up>
+
+" quickly edit a macro
+" <leader>m | "f<leader>m
+nnoremap <leader>m  :<c-u><c-r><c-r>='let @'. v:register .' = '. string(getreg(v:register))<cr><c-f><left>
+

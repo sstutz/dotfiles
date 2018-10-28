@@ -52,9 +52,10 @@
 
 " Backups: {
     set nobackup
-    let &directory=g:configpath . '/swap//' " Place swapfiles away from projects
-    let &undodir=g:configpath . '/undo//'   " Same for persistent undo files
+    let &directory=g:configpath . '/files/swap//' " Place swapfiles away from projects
+
     set undofile
+    let &undodir=g:configpath . '/files/undo//'   " Same for persistent undo files
 " }
 
 " Encoding: {
@@ -90,6 +91,7 @@
         let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
         let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
     endif
+    let g:gruvbox_italic=0
     colorscheme gruvbox
     let g:gruvbox_contrast_dark='medium'
     set title
@@ -103,6 +105,7 @@
     set sidescroll=1
     set showbreak=↪
     set display+=lastline
+    set signcolumn=yes
     set showtabline=2
 
     if has('cmdline_info')
