@@ -183,6 +183,8 @@ exec --no-startup-id bash ~/.config/i3/scripts/autostart
 exec --no-startup-id bash ~/.config/i3/scripts/wallpaper
 exec --no-startup-id compton --config ~/.config/compton.conf -b --opacity-rule '100:window_type = "dock" && class_g = "i3blocks"'
 exec --no-startup-id dunst
+exec /usr/lib/mate-polkit/polkit-mate-authentication-agent-1
+
 
 # Pulse Audio controls
 bindsym XF86AudioRaiseVolume exec --no-startup-id amixer -q -D pulse sset Master 5%+

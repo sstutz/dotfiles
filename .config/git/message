@@ -13,13 +13,14 @@ well-enough.
 
 # Rule 1, use meta operation
 #
-# Add: new function to rule the world
+# Add: A new feature
 # Mod: query_date logic
-# Rem: user.rake is not used anymore
+# Rem: Old, unused Code.
 # Ren: hello-world to hell-world
-# Fix: #1900, stupid typo
-# Ref: extract to an abstract class.
-# Opt: cache in get_active_table
+# Fix: #1900, A bug fix
+# Ref: A code change that neither fixes a bug nor adds a feature
+# Opt:c cache in get_active_table
+# Chores: Changes to documentation, build/QS tools, libraries, etc
 
 # Rule 2, leave a "*" at the end to flag folding
 #

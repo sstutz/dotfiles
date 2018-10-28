@@ -36,6 +36,7 @@
     credit = shortlog -sn
     exec = ! "exec"
     ctags = !.git/hooks/ctags
+	up = pull --rebase --autostash
 
 [diff]
     tool = vimdiff
