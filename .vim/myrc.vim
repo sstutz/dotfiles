@@ -1,6 +1,6 @@
 " Plugins: {
-    runtime! plugins.vim
     runtime! mappings.vim
+    runtime! plugins.vim
 " }
 
 " Autocommand Groups: {
@@ -8,9 +8,9 @@
 
     augroup MyColors
         autocmd!
-        autocmd ColorScheme * highlight cursorline guibg=#333333
-                          \ | highlight CursorColumn guibg=#333333
-                          \ | highlight ColorColumn ctermbg=red
+        autocmd ColorScheme * highlight cursorline    ctermbg=grey guibg=#333333
+                          \ | highlight CursorColumn  ctermbg=grey guibg=#333334
+                          \ | highlight ColorColumn   ctermbg=red  guibg=#fb4934
     augroup END
 
     augroup TooLong

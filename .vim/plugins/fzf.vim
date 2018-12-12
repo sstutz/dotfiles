@@ -50,6 +50,19 @@ function! Fzf_dev()
                 \ })
 endfunction
 " }
-noremap <c-p> :call Fzf_dev()<cr>
-noremap <c-b> :Buffers<cr>
-noremap <c-l> :Lines<cr>
+
+" --column: Show column number
+" --line-number: Show line numober
+" --no-heading: Do not show file headings in results
+" --fixed-strings: Search term as a literal string
+" --ignore-case: Case insensitive search
+" --no-ignore: Do not respect .gitignore, etc...
+" --hidden: Search hidden files and folders
+" --follow: Follow symlinks
+" --glob: Additional conditions for search (in this case ignore everything in the .git/ folder)
+" --color: Search color options
+command! -bang -nargs=* Find call fzf#vim#grep('rg --column --line-number --no-heading --fixed-strings --smart-case --no-ignore -g "!tags" --hidden --follow --glob "!build/*" --glob "!.git/*" --color "always" '.shellescape(<q-args>).'| tr -d "\017"', 1,
+            \   <bang>0 ? fzf#vim#with_preview('up:60%')
+            \           : fzf#vim#with_preview('right:50%'),
+            \   <bang>0)
+

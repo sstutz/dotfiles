@@ -44,15 +44,33 @@ if filereadable('docker/deploy.sh')
 endif
 
 let test#strategy = 'vimterminal'
+let test#php#phpunit#options = '--no-coverage'
 
 " Add plugins to &runtimepath
 call plug#end()
 
 " extends % functionality
 runtime! macros/matchit.vim
+runtime! ftplugin/man.vim
 
 " Plugin specific settings
 runtime! macros/sandwich/keymap/surround.vim
 runtime! plugins/lightline.vim
 runtime! plugins/fzf.vim
 runtime! plugins/vdebug.vim
+
+" Plugin related mappings
+noremap <C-t> :TagbarToggle<CR>
+
+" Vim-Test Mappings
+nmap <silent> <leader>tn :TestNearest<CR>
+nmap <silent> <leader>tf :TestFile<CR>
+nmap <silent> <leader>ts :TestSuite<CR>
+nmap <silent> <leader>tl :TestLast<CR>
+nmap <silent> <leader>gt :TestVisit<CR>
+
+
+noremap <leader>G :Find <c-r>=expand("<cword>")<cr><cr>
+noremap <c-p> :call Fzf_dev()<cr>
+noremap <c-b> :Buffers<cr>
+noremap <c-l> :Lines<cr>
