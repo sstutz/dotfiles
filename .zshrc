@@ -14,6 +14,8 @@ for config in ~/.zsh/*; do
     fi
 done;
 
+eval "$(keychain --agents "gpg,ssh" --eval --quiet id_rsa)"
+
 [[ -f ~/.zshrc.local ]] && source ~/.zshrc.local
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
