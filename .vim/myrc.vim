@@ -62,6 +62,8 @@
     set encoding=utf-8 nobomb
     scriptencoding utf-8
     set fileencoding=utf-8
+    set termencoding=utf-8
+    set fileencodings=ucs-bom,utf-8,ISO-8859-1,latin1
 " }
 
 " Formatting: {
@@ -143,6 +145,16 @@
     " leave spell disabled by default
     " enable via ftplugin or manually if needed
     set spelllang=en,de
+" }
+
+" Diff: {
+    set diffopt=internal
+    set diffopt+=algorithm:patience
+    set diffopt+=indent-heuristic
+    set diffopt+=filler
+    set diffopt+=vertical
+    set diffopt+=context:5
+    set diffopt+=foldcolumn:1
 " }
 
 " vim: set sw=4 ts=4 sts=4 et tw=78 foldmarker={,} foldlevel=0 foldmethod=marker spell:

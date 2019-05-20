@@ -1,0 +1,71 @@
+snippet php "Open php"
+<?php
+
+$0
+endsnippet
+
+snippet map "Map using class method"
+array_map([${1:__CLASS__}, '$2'], $${3:list});
+endsnippet
+
+snippet cb "Callback" i
+function ($1) {
+    ${0://}
+}
+endsnippet
+
+snippet cbu "Callback with use" i
+function ($1) use ($${2:foo}) {
+    ${0://}
+}
+endsnippet
+
+snippet for "For"
+for ($i = ${1:0}, $c = ${2:1}; $i < $c; $i++) {
+    ${0://}
+}
+endsnippet
+
+snippet fore "Foreach"
+foreach ($${1:items} as $${2:item}) {
+    ${0://}
+}
+endsnippet
+
+snippet if "If statement"
+if (${1:condition}) {
+    ${0://}
+}
+endsnippet
+
+snippet met "Define method"
+${1:public} function ${2:foo}($3): ${4:void}
+{
+    ${0://}
+}
+endsnippet
+
+snippet setup "setUp method"
+protected function setUp()
+{
+    parent::setUp();
+    ${0://}
+}
+endsnippet
+
+snippet teardown "tearDown method"
+protected function tearDown()
+{
+    ${0://}
+    parent::tearDown();
+}
+endsnippet
+
+snippet test "Define test"
+/** @test */
+public function ${2:foo}(): ${3:void}
+{
+    ${0://}
+}
+endsnippet
+
