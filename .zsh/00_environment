@@ -1,3 +1,4 @@
+#!/usr/bin/env sh
 # if files were numerical, sort it this way :P
 setopt NUMERIC_GLOB_SORT
 
@@ -29,7 +30,7 @@ export LESSCHARSET=utf-8
 
 # extend path environment variable
 export PATH="$PATH:/home/$USER/.local/bin"
-export PATH="$PATH:/home/$USER//.yarn/bin"
+export PATH="$PATH:/home/$USER/.yarn/bin"
 # set path to dofiles folder
 #export DOTFILES="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 export DOTFILES="$HOME/.config/dotfiles"

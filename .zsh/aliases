@@ -1,3 +1,4 @@
+#!/usr/bin/env sh
 # a more readable ls output
 alias ll='ls -AlrthF'
 

@@ -1,3 +1,4 @@
+#!/usr/bin/env sh
 if [[ -f "/usr/bin/javac" ]]; then
     export JAVA_HOME="/usr/lib/jvm/java-default-runtime"
 fi

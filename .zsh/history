@@ -1,3 +1,4 @@
+#!/usr/bin/env sh
 HISTFILE="$HOME/.zsh/zhistory"
 
 HISTSIZE=5000

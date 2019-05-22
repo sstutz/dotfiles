@@ -1,3 +1,4 @@
+#!/usr/bin/env sh
 if [[ -d "/usr/lib/python3.3/site-packages" ]]; then
     export PYTHONPATH=/usr/lib/python3.3/site-packages
 fi

@@ -1,8 +1,8 @@
-#!/bin/bash
-ZSH_THEME_GIT_PROMPT_DIRTY="$fg[red]+"
-ZSH_THEME_GIT_PROMPT_CLEAN="$fg[green]✔"
-ZSH_THEME_GIT_PROMPT_PREFIX="[git:"
-ZSH_THEME_GIT_PROMPT_SUFFIX="]$reset_color"
+#!/usr/bin/env bash
+export ZSH_THEME_GIT_PROMPT_DIRTY="${fg[red]}+"
+export ZSH_THEME_GIT_PROMPT_CLEAN="${fg[green]}✔"
+export ZSH_THEME_GIT_PROMPT_PREFIX="[git:"
+export ZSH_THEME_GIT_PROMPT_SUFFIX="]$reset_color"
 
 
 git_prompt_info() {
@@ -51,4 +51,5 @@ getIcon(){
 precmd() {
     print -rP '%(!.%{$fg_bold[red]%}.%{$fg_bold[green]%}%n@)%m $fg[yellow]in $(get_pwd)$(put_spacing)$(git_prompt_info)'
 }
+
 PROMPT='%{$reset_color%}$(getIcon) '

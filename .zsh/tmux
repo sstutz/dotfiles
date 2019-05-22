@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
 create_session() {
     local session=${1-work}
@@ -8,5 +8,5 @@ create_session() {
 }
 
 if [[ "$TERM" != "screen-256color" ]]; then
-    tmux has-session -t $USER 2>/dev/null  || create_session "$USER"
+    tmux has-session -t "$USER" 2>/dev/null  || create_session "$USER"
 fi

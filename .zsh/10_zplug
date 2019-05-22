@@ -4,21 +4,22 @@ ZPLUG_INSTALL_PATH="$HOME/.zplug"
 # Check if zplug is installed
 if [[ ! -d "$ZPLUG_INSTALL_PATH" ]]; then
     git clone https://github.com/zplug/zplug "$ZPLUG_INSTALL_PATH"
-    source "$ZPLUG_INSTALL_PATH/init.zsh" && zplug update --self
+    # shellcheck source=/dev/null
+    source "$ZPLUG_INSTALL_PATH/init.zsh"
 fi
 
 # default compdump to zplug
-ZSH_COMPDUMP="$ZPLUG_HOME/zcompdump"
+export ZSH_COMPDUMP="$ZPLUG_HOME/zcompdump"
 
 # Essential
 source "$ZPLUG_INSTALL_PATH/init.zsh"
 
 zplug "zplug/zplug", hook-build:"zplug --self-manage"
 zplug "robbyrussell/oh-my-zsh", use:"lib/*.zsh", defer:0
-zplug "plugins/git",            from:oh-my-zsh, if:"(( $+commands[git] ))"
-zplug "plugins/git-flow-avh",   from:oh-my-zsh, if:"(( $+commands[git] ))"
-zplug "$HOME/.zsh/themes",   from:local, use:"devbox.zsh-theme", defer:1
-zplug "unixorn/git-extra-commands"
+zplug "plugins/git", from:oh-my-zsh, if:"(( $+commands[git] ))"
+zplug "plugins/git-flow-avh", from:oh-my-zsh, if:"(( $+commands[git] ))"
+zplug "$HOME/.zsh/themes", as:theme, from:local, use:"devbox.zsh-theme", defer:1
+zplug "unixorn/git-extra-commands", if:"(( $+commands[git] ))"
 zplug "chrissicool/zsh-256color"
 zplug "zsh-users/zsh-syntax-highlighting", defer:3
 zplug "zsh-users/zsh-autosuggestions", defer:3
@@ -26,13 +27,26 @@ zplug "zsh-users/zsh-autosuggestions", defer:3
 zplug "dokku/dokku", \
     as:command, \
     rename-to:dokku, \
-    use:"contrib/dokku_client.sh" \
+    use:"contrib/dokku_client.sh", \
+    if:"(( ! $+commands[dokku] ))"
 
+zplug "junegunn/fzf-bin", \
+    from:gh-r, \
+    as:command, \
+    rename-to:fzf, \
+    if:"(( ! $+commands[fzf] ))"
+
+
+zplug "stedolan/jq", \
+    from:gh-r, \
+    as:command, \
+    rename-to:jq, \
+    if:"(( ! $+commands[jq] ))"
 
 # Install plugins if there are plugins that have not been installed
-if ! zplug check --verbose; then
+if ! zplug check; then
     printf "Install? [y/N]: "
-    if read -q; then
+    if read -r -q; then
         echo; zplug install
     fi
 fi
