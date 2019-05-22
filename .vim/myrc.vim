@@ -120,6 +120,7 @@
     set incsearch
     set hlsearch
     set ignorecase
+    set wildignorecase
     set smartcase
     if executable('rg')
         set grepprg=rg\ --vimgrep

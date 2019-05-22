@@ -30,3 +30,4 @@ cnoremap <c-p>  <up>
 " <leader>m | "f<leader>m
 nnoremap <leader>m  :<c-u><c-r><c-r>='let @'. v:register .' = '. string(getreg(v:register))<cr><c-f><left>
 
+nnoremap gb :<C-U>buffers<CR>:buffer<Space>
