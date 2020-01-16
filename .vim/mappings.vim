@@ -11,8 +11,6 @@ nnoremap <silent> <leader>fe :Lexplore<CR>
 
 map <leader>n :call renameFile#RenameFile()<cr>
 
-nnoremap <Space>s/ :FlyGrep<cr>
-
 inoremap <expr> <CR>        pumvisible() ? "\<C-y>" : "\<CR>"
 inoremap <expr> <Tab>       pumvisible() ? "\<C-n>" : "\<Tab>"
 inoremap <expr> <Down>      pumvisible() ? "\<C-n>" : "\<Down>"
@@ -31,3 +29,21 @@ cnoremap <c-p>  <up>
 nnoremap <leader>m  :<c-u><c-r><c-r>='let @'. v:register .' = '. string(getreg(v:register))<cr><c-f><left>
 
 nnoremap gb :<C-U>buffers<CR>:buffer<Space>
+
+nnoremap <silent> <ESC>OA <UP>
+nnoremap <silent> <ESC>OB <DOWN>
+nnoremap <silent> <ESC>OC <RIGHT>
+nnoremap <silent> <ESC>OD <LEFT>
+inoremap <silent> <ESC>OA <UP>
+inoremap <silent> <ESC>OB <DOWN>
+inoremap <silent> <ESC>OC <RIGHT>
+inoremap <silent> <ESC>OD <LEFT>
+
+
+" Clipboard functionality (paste from system)
+vnoremap <leader>y "+y
+nnoremap <leader>y "+y
+nnoremap <leader>p "+p
+vnoremap <leader>p "+p
+
+" vim: set sw=4 ts=8 sts=4 et tw=78  spell:
