@@ -1,6 +1,6 @@
 #!/usr/bin/env sh
 vim_update() {
-    vim +PlugUpdate +UpdateRemotePlugins +qa
+    vim +PlugUpdate +qa
 }
 
 vim_update;

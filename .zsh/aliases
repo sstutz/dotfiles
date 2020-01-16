@@ -1,9 +1,15 @@
-#!/usr/bin/env sh
+#!/usr/bin/env zsh
+
 # a more readable ls output
 alias ll='ls -AlrthF'
 
 # root shell but with the current users environment
 alias rs='sudo -sE'
+
+[[ -x /usr/bin/neomutt ]] && alias mutt=neomutt
+
+alias o=xdg-open
+alias open=xdg-open
 
 # copy pastebinit links to clipboard rather than stdout
 alias pastebincp="pastebinit | xsel -ib"

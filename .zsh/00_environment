@@ -13,7 +13,7 @@ setopt nohup
 
 # Default editor
 export EDITOR="vim"
-export VISUAL="vim"
+export VISUAL="$EDITOR"
 
 # Locale exports
 locale="en_US.UTF-8"
@@ -28,11 +28,9 @@ export LANG=$locale
 export LANGUAGE=$locale
 export LESSCHARSET=utf-8
 
-# extend path environment variable
 export PATH="$PATH:/home/$USER/.local/bin"
 export PATH="$PATH:/home/$USER/.yarn/bin"
-# set path to dofiles folder
-#export DOTFILES="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
+
 export DOTFILES="$HOME/.config/dotfiles"
 
 if [ -x /usr/bin/dircolors ]; then
@@ -45,7 +43,8 @@ if command -v rg >/dev/null; then
     # --hidden: Search hidden files and folders
     # --follow: Follow symlinks
     # --glob: Additional conditions for search (in this case ignore everything in the .git/ folder)
-    export FZF_DEFAULT_COMMAND='rg --files --no-ignore --hidden --follow --glob "!{.git,node_modules}/*" 2> /dev/null'
+    # export FZF_DEFAULT_COMMAND='rg --files --no-ignore --hidden --follow --glob "!{.git,node_modules}/*" 2> /dev/null'
+    export FZF_DEFAULT_COMMAND='fd --hidden --type f --type l --exclude ".git"'
     export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
     export FZF_ALT_C_COMMAND="cd ~/; bfs -type d -nohidden | sed s/^\./~/"
     zle -N fzf

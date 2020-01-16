@@ -7,6 +7,6 @@ create_session() {
     tmux new-window -t "$session" -n console
 }
 
-if [[ "$TERM" != "screen-256color" ]]; then
+if [[ "$TERM" != "screen-255color" ]]; then
     tmux has-session -t "$USER" 2>/dev/null  || create_session "$USER"
 fi

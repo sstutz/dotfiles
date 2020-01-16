@@ -27,6 +27,3 @@ well-enough.
 # Mod: query_date logic*
 #
 # Use chronic to guess date.
-#
-# Chronic.parse('may 27th', :guess => false)
-# #=> Sun May 27 00:00:00 PDT 2007..Mon May 28 00:00:00 PDT 2007

@@ -16,8 +16,8 @@ cleanUp() {
 trap cleanUp EXIT
 
 git ls-files | ctags \
-    --tag-relative \        #
-    -L - \                  # Rad File from stdout, git ls-files that is.
+    --tag-relative \
+    -L - \                  # Read File from stdout, git ls-files that is.
     -f "$dir/$$.tags" \
     --fields=aimlS \
     --languages=-php,sql \

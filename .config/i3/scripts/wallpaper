@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-WALLPAPER="city.jpg"
+WALLPAPER="current.jpg"
 
 feh --bg-scale "$HOME/Pictures/Wallpapers/$WALLPAPER"
 

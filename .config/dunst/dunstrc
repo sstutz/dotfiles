@@ -1,30 +1,31 @@
 [global]
-    font = "Droid Sans 8"
+    font = "Fantasque Sans Mono" 11
     allow_markup = yes
     format = "<b>%s</b>\n%b"
     sort = yes
     indicate_hidden = yes
-    alignment = center
+    alignment = left
     bounce_freq = 0
     show_age_threshold = 60
     word_wrap = yes
     ignore_newline = no
-    geometry = "200x5-30+20"
+    geometry = "280x5-8+38"
     transparency = 0
     idle_threshold = 120
     monitor = 0
-    follow = mouse
+    follow = none
     sticky_history = yes
-    line_height = 0
-    separator_height = 2
-    padding = 8
-    horizontal_padding = 8
-    separator_color = frame
+    line_height = 3
+    separator_height = 1
+    padding = 15
+    horizontal_padding = 15
+    separator_color = auto
     startup_notification = false
+    corner_radius = 4
 
 [frame]
-    width = 1
-    color = "#464B50"
+    width = 0
+    color = "#FFFFFF"
 
 [shortcuts]
     close = ctrl+space
@@ -33,16 +34,16 @@
     context = ctrl+shift+period
 
 [urgency_low]
-    background = "#323537"
-    foreground = "#8F9D6A"
+    background = "#1F1F1F"
+    foreground = "#DDDDDD"
     timeout = 30
 
 [urgency_normal]
-    background = "#323537"
-    foreground = "#AFC4DB"
+    background = "#1F1F1F"
+    foreground = "#DDDDDD"
     timeout = 45
 
 [urgency_critical]
-    background = "#323537"
+    background = "#1F1F1F"
     foreground = "#CF6A4C"
     timeout = 0

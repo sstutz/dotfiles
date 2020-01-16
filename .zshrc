@@ -14,8 +14,10 @@ for config in ~/.zsh/*; do
     fi
 done;
 
-eval "$(keychain --agents "gpg,ssh" --eval --quiet id_rsa)"
+eval "$(keychain --agents "gpg,ssh" --eval --quiet)"
 
 [[ -f ~/.zshrc.local ]] && source ~/.zshrc.local
 
-[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+[[ -f ~/.fzf.zsh ]] && source ~/.fzf.zsh
+
+export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"

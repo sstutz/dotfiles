@@ -1,37 +1,15 @@
 #!/usr/bin/bash
 
 # startup dropbox
-if [[ ! $(pgrep dropbox) && -x dropboxd ]]; then
-    dropboxd &
-else
-    echo "dropbox is running already"
-fi
-
 # start screencloud
 if [[ -x /usr/bin/screencloud ]]; then
     screencloud &
-fi
-
-# start google music client
-if [[ -x /usr/bin/google-musicmanager ]]; then
-    google-musicmanager &
-fi
-
-# start the network manager
-if [[ -x /usr/bin/nm-applet ]]; then
-    nm-applet &
 fi
 
 if [[ -x /usr/bin/blueman-applet ]]; then
     /usr/bin/blueman-applet &
 fi
 
-if [[ -x /usr/bin/udiskie ]]; then
-    /usr/bin/udiskie &
+if [[ -x /usr/bin/redshift-gtk ]]; then
+    /usr/bin/redshift-gtk &
 fi
-
-if [[ -x /usr/bin/stride ]]; then
-    /usr/bin/stride &
-fi
-
-

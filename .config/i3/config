@@ -1,4 +1,3 @@
-
 set $mod Mod4
 
 # Font for window titles. Will also be used by the bar unless a different font
@@ -15,10 +14,20 @@ bindsym $mod+Return exec termite
 bindsym $mod+Shift+q kill
 
 # Rofi binding
-bindsym $mod+d exec --no-startup-id i3-dmenu-desktop --dmenu='rofi -i -dmenu'
+set $menu ~/.local/bin/start-rofi.sh
+bindsym $mod+d exec $menu
 
-# Disable Title
-new_window pixel 1
+#removes window titles
+for_window [class=".*"] border pixel 0
+gaps inner 9
+gaps outer 3
+smart_borders no_gaps
+
+
+# floating by default
+for_window [title="Qalculate*"] floating enable
+
+bindsym $mod+b split h
 
 # change focus
 bindsym $mod+h focus left
@@ -70,26 +79,16 @@ bindsym $mod+a focus parent
 # focus the child container
 bindsym $mod+z focus child
 
-# 1: Internet & Network 
-# 2: Office & Documents 
-# 3: Social Media & Email 
-# 4: Multi-Media 
-# 5: Gaming 
-# 6: Virtual Machines 
-# 7: System Monitoring 
-# 8: Programming 
-# 9: Background 
-# 10: Other 
-set $ws1  "1: main "
-set $ws2  "2: dev "
-set $ws3  "3: web "
-set $ws4  "4: docs "
-set $ws5  "5: mail "
-set $ws6  "6: chat "
-set $ws7  "7:  "
-set $ws8  "8:  "
-set $ws9  "9:  "
-set $ws10 "10:  "
+set $ws1  "1"
+set $ws2  "2"
+set $ws3  "3"
+set $ws4  "4"
+set $ws5  "5"
+set $ws6  "6"
+set $ws7  "7"
+set $ws8  "8"
+set $ws9  "9"
+set $ws10 "10"
 
 # switch to workspace
 bindsym $mod+1 workspace $ws1
@@ -158,33 +157,15 @@ client.unfocused        #282a2e #282a2e     #969896     #282a2e
 client.urgent           #373b41 #cc6666     #ffffff     #cc6666
 
 
-# Start i3bar to display a workspace bar (plus the system information i3status
-# finds out, if available)
-bar {
-    strip_workspace_numbers yes
-    position top
-    status_command i3blocks -c ~/.config/i3blocks/i3blocks.conf
-    separator_symbol " "
-    workspace_buttons yes
-    font pango:SF Pro Display, Awesome 11
-    colors {
-        separator #969896
-        background #1d1f21
-        statusline #c5c8c6
-        focused_workspace #81a2be #81a2be #1d1f21
-        active_workspace #373b41 #373b41 #ffffff
-        inactive_workspace #282a2e #282a2e #969896
-        urgent_workspace #cc6666 #cc6666 #ffffff
-    }
-}
+exec_always --no-startup-id $HOME/.config/polybar/launch.sh
+exec_always --no-startup-id systemctl --user restart compton
+# exec_always --no-startup-id compton --config ~/.config/compton/compton.conf --respect-prop-shadow
 
 # Custom bindings
 exec --no-startup-id bash ~/.config/i3/scripts/autostart
 exec --no-startup-id bash ~/.config/i3/scripts/wallpaper
-exec --no-startup-id compton --config ~/.config/compton.conf -b --opacity-rule '100:window_type = "dock" && class_g = "i3blocks"'
 exec --no-startup-id dunst
 exec /usr/lib/mate-polkit/polkit-mate-authentication-agent-1
-
 
 # Pulse Audio controls
 bindsym XF86AudioRaiseVolume exec --no-startup-id amixer -q -D pulse sset Master 5%+
@@ -195,8 +176,5 @@ bindsym XF86AudioMute exec --no-startup-id amixer -q -D pulse sset Master toggle
 bindsym XF86MonBrightnessUp exec xbacklight -inc 10 # increase screen brightness
 bindsym XF86MonBrightnessDown exec xbacklight -dec 10 # decrease screen brightness
 
-# Capslock and Numpad Indicator
-bindsym --release Caps_Lock exec pkill -SIGRTMIN+11 i3blocks
-bindsym --release Num_Lock  exec pkill -SIGRTMIN+11 i3blocks
-
 # vim:filetype=i3
+
