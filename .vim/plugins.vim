@@ -2,7 +2,6 @@
 call plug#begin(g:configpath . '/plugged')
 " Visual Helpers
 Plug 'vim-airline/vim-airline'
-Plug 'edkolev/tmuxline.vim'
 Plug 'mhinz/vim-signify'
 Plug 'ryanoasis/vim-devicons'
 Plug 'kshenoy/vim-signature'
@@ -19,7 +18,7 @@ Plug 'majutsushi/tagbar', { 'on': 'TagbarToggle' }
 Plug 'dense-analysis/ale'
 Plug 'machakann/vim-sandwich'
 Plug 'mbbill/undotree', { 'on': 'UndotreeToggle' }
-Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
+Plug 'junegunn/fzf', { 'do': './install --bin' }
 Plug 'junegunn/fzf.vim'
 Plug 'christoomey/vim-tmux-navigator'
 Plug 'janko/vim-test'
@@ -138,7 +137,7 @@ let g:phpactorBranch = 'develop'
 let g:phpactorOmniError = v:true
 let g:phpactorOmniAutoClassImport = v:true
 if (executable('fzf'))
-    let g:phpactorInputListStrategy='fzf'
+    let g:phpactorInputListStrategy='phpactor#input#list#fzf'
 endif
 " }}}
 

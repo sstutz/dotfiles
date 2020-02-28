@@ -44,6 +44,8 @@ inoremap <silent> <ESC>OD <LEFT>
 vnoremap <leader>y "+y
 nnoremap <leader>y "+y
 nnoremap <leader>p "+p
+nnoremap <leader>P "+P
 vnoremap <leader>p "+p
+vnoremap <leader>P "+P
 
 " vim: set sw=4 ts=8 sts=4 et tw=78  spell:
